@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-11-14T19:00:47+00:00",
+  "source": "JPL Horizons",
+  "fallback": true,
+  "objects": {
+    "voyager-1": {
+      "distance_km": 25890556820.554634,
+      "light_time_s": 86361.60160024652,
+      "status": "ok",
+      "source": "JPL Horizons"
+    },
+    "voyager-2": {
+      "distance_km": 21670246763.932552,
+      "light_time_s": 72284.16254531845,
+      "status": "ok",
+      "source": "JPL Horizons"
+    }
+  }
+}

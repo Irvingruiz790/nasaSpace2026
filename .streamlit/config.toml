@@ -1,0 +1,17 @@
+# Configuración de Streamlit para «¿Dónde está ahora?».
+# Dueño: Backend. No cambiar sin avisar al equipo.
+
+[theme]
+base = "light"
+primaryColor = "#1F3864"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#EEF3F8"
+textColor = "#1F3864"
+font = "sans serif"
+
+[browser]
+# Streamlit Cloud no necesita telemetría y el hackatón no la usa.
+gatherUsageStats = false
+
+[server]
+headless = true

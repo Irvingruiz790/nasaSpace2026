@@ -1,0 +1,143 @@
+{
+  "piezas": [
+    {
+      "id": "voyager-1",
+      "nombre": "Voyager 1",
+      "apodo": "La mensajera más lejana",
+      "tipo": "nave",
+      "mision": "Voyager",
+      "agencia": "NASA/JPL-Caltech",
+      "zona": "espacio_profundo",
+      "estado": "activo",
+      "etiqueta_estado": "Sigue despierta",
+      "ubicacion_texto": "espacio interestelar, más allá de la heliopausa",
+      "lat": null,
+      "lon": null,
+      "lanzamiento": "1977-09-05",
+      "ultima_senal": "sigue activa",
+      "distancia_actual": "unos 25 900 millones de km",
+      "horizons_id": "-31",
+      "imagen": "assets/img/voyager-1_main.jpg",
+      "credito_imagen": "NASA/JPL-Caltech",
+      "alt_text": "Ilustración de la nave Voyager con su gran antena parabólica apuntando hacia la Tierra.",
+      "historia": {
+        "que_es": "Una nave del tamaño de un auto pequeño con una antena de casi 4 metros. Fue construida para visitar los planetas gigantes y nunca volver.",
+        "por_que": "Para aprovechar una alineación poco común de los planetas gigantes y estudiar sus lunas, anillos y atmósferas.",
+        "descubrimiento": "Volcanes activos en Ío, la atmósfera de Titán, la estructura de los anillos de Saturno y el borde del viento solar.",
+        "ahora": "En el espacio interestelar, a unos 25 900 millones de km. Su señal tarda unas 24 horas en llegar a la Tierra.",
+        "dato_curioso": "Lleva un disco de oro con saludos en 55 idiomas, sonidos de la Tierra y música. Si alguien lo encuentra, sabrá que existimos."
+      },
+      "fuentes": [
+        {
+          "titulo": "NASA Science — Voyager",
+          "url": "https://science.nasa.gov/mission/voyager/",
+          "consultado": "2026-11-14"
+        },
+        {
+          "titulo": "NASA Science — Where are Voyager 1 and 2 now?",
+          "url": "https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/",
+          "consultado": "2026-11-14"
+        },
+        {
+          "titulo": "JPL Horizons API — COMMAND='-31'",
+          "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+          "consultado": "2026-11-14"
+        }
+      ],
+      "revisor": "pendiente",
+      "fecha_verificacion": "2026-11-14",
+      "notas_verificacion": "La distancia se calcula con Horizons y se muestra como aproximación."
+    },
+    {
+      "id": "apollo-11-lm",
+      "nombre": "Módulo Lunar Eagle (etapa de descenso)",
+      "apodo": "El águila que se quedó",
+      "tipo": "lander",
+      "mision": "Apolo 11",
+      "agencia": "NASA",
+      "zona": "luna",
+      "estado": "se_quedo",
+      "etiqueta_estado": "Se quedó en la Luna",
+      "ubicacion_texto": "Mar de la Tranquilidad",
+      "lat": 0.67416,
+      "lon": 23.47314,
+      "lanzamiento": "1969-07-16",
+      "ultima_senal": "1969-08-27",
+      "distancia_actual": "unos 384 400 km de la Tierra, en promedio",
+      "horizons_id": null,
+      "imagen": "assets/img/apollo-11-lm_main.jpg",
+      "credito_imagen": "NASA",
+      "alt_text": "El módulo lunar Eagle posado en la Luna, con un astronauta junto a una de sus piernas.",
+      "historia": {
+        "que_es": "La parte baja del módulo lunar que llevó a Neil Armstrong y Buzz Aldrin a la Luna. Servía como plataforma de aterrizaje y como base para despegar.",
+        "por_que": "Para cumplir el objetivo de Kennedy: llevar humanos a la Luna y traerlos de vuelta antes de que terminara la década de 1960.",
+        "descubrimiento": "Trajo 21.55 kg de rocas y polvo lunar; dejó un sismómetro y un espejo especial para medir la distancia a la Luna.",
+        "ahora": "Sigue en el Mar de la Tranquilidad, en 0.674°N, 23.473°E. La etapa de ascenso se separó y se cree que se estrelló.",
+        "dato_curioso": "El espejo (retrorreflector) no usa electricidad. Desde la Tierra le disparan láseres y sigue respondiendo más de 50 años después."
+      },
+      "fuentes": [
+        {
+          "titulo": "NSSDCA — Apollo 11 Lunar Module / EASEP",
+          "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C",
+          "consultado": "2026-11-14"
+        },
+        {
+          "titulo": "NSSDCA — Apollo 11 Mission",
+          "url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo11.html",
+          "consultado": "2026-11-14"
+        }
+      ],
+      "revisor": "pendiente",
+      "fecha_verificacion": "2026-11-14",
+      "notas_verificacion": "NSSDCA indica que el destino de la etapa de ascenso no se conoce con certeza."
+    },
+    {
+      "id": "voyager-2",
+      "nombre": "Voyager 2",
+      "apodo": "La que visitó cuatro mundos",
+      "tipo": "nave",
+      "mision": "Voyager",
+      "agencia": "NASA/JPL-Caltech",
+      "zona": "espacio_profundo",
+      "estado": "activo",
+      "etiqueta_estado": "Sigue despierta",
+      "ubicacion_texto": "espacio interestelar, más allá de la heliopausa",
+      "lat": null,
+      "lon": null,
+      "lanzamiento": "1977-08-20",
+      "ultima_senal": "sigue activa",
+      "distancia_actual": "unos 21 700 millones de km",
+      "horizons_id": "-32",
+      "imagen": "assets/img/voyager-2_main.jpg",
+      "credito_imagen": "NASA/JPL-Caltech",
+      "alt_text": "Ilustración de la nave Voyager 2 con su antena parabólica y sus instrumentos al final de un mástil.",
+      "historia": {
+        "que_es": "Una nave gemela de la Voyager 1, con la misma antena y los mismos instrumentos. Salió dos semanas después y tomó un camino más lento.",
+        "por_que": "Para aprovechar la misma alineación de planetas y visitar los cuatro gigantes: Júpiter, Saturno, Urano y Neptuno.",
+        "descubrimiento": "Fue la única nave que visitó Urano y Neptuno. Descubrió lunas y anillos nuevos, y vio géiseres en Tritón.",
+        "ahora": "En el espacio interestelar, a unos 21 700 millones de km. Su señal tarda unas 20 horas en llegar a la Tierra.",
+        "dato_curioso": "Es el único objeto construido por humanos que ha visitado los cuatro planetas gigantes."
+      },
+      "fuentes": [
+        {
+          "titulo": "NASA Science — Voyager",
+          "url": "https://science.nasa.gov/mission/voyager/",
+          "consultado": "2026-11-14"
+        },
+        {
+          "titulo": "NASA Science — Where are Voyager 1 and 2 now?",
+          "url": "https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/",
+          "consultado": "2026-11-14"
+        },
+        {
+          "titulo": "JPL Horizons API — COMMAND='-32'",
+          "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+          "consultado": "2026-11-14"
+        }
+      ],
+      "revisor": "pendiente",
+      "fecha_verificacion": "2026-11-14",
+      "notas_verificacion": "La distancia se calcula con Horizons y se muestra como aproximación."
+    }
+  ]
+}
