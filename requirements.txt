@@ -1,0 +1,4 @@
+# Dependencias del proyecto. Dueño: BE.
+# Versiones fijas: lo que se prueba en local es lo que corre en el deploy.
+streamlit==1.67.0
+requests==2.34.2

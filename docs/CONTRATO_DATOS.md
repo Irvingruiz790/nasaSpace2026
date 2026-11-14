@@ -4,6 +4,8 @@
 **Dueños:** CD (contenido) y BE (backend).  
 **Regla:** después de esta versión, solo se agregan campos opcionales con aprobación de ambos. No se renombran campos existentes.
 
+> **Actualización del 14 de noviembre de 2026 — flujo de trabajo.** El esquema de campos de este documento no cambió. Lo que cambió es *quién escribe qué*: investigación llena `contenido/fichas.csv` (Excel) y backend genera `data/artifacts.json` con `python scripts/fichas_a_json.py`. Nadie edita el JSON a mano. El paso a paso por equipo está en `docs/Guia_Equipo.docx`.
+
 Este documento es la fuente de verdad para que frontend, backend y contenido trabajen en paralelo sin romperse.
 
 ---

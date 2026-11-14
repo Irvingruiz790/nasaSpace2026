@@ -1,0 +1,10 @@
+{
+  "luna": {
+    "apollo-11-lm": { "x": 34, "y": 44 }
+  },
+  "marte": {},
+  "espacio_profundo": {
+    "voyager-1": { "x": 66, "y": 32 },
+    "voyager-2": { "x": 38, "y": 58 }
+  }
+}

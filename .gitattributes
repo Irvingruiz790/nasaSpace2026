@@ -1,0 +1,16 @@
+# Normaliza los finales de línea para que Windows, Mac y Linux se entiendan.
+* text=auto eol=lf
+
+# Documentos y binarios: Git no debe intentar "arreglarlos".
+*.docx binary
+*.pdf binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.zip binary
+
+# Archivos de Office que Word deja abiertos.
+~$* binary

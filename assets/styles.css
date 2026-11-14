@@ -1,0 +1,257 @@
+/* ==========================================================================
+   ¿Dónde está ahora? — sistema visual
+   Dueño: Frontend.
+
+   Reglas:
+   - Todo el color sale de las variables de :root. No se escribe un color
+     suelto en medio del archivo.
+   - Texto mínimo 16 px. Contraste alto. Foco visible.
+   - Nada de fuentes por CDN: si se cae el internet, la app se vería rota.
+   ========================================================================== */
+
+:root {
+  --fe1-azul: #1f3864;
+  --fe1-azul-medio: #2e5c8a;
+  --fe1-azul-claro: #eef3f8;
+  --fe1-verde: #0b6b3a;
+  --fe1-verde-fondo: #d9f5e4;
+  --fe1-naranja: #c55a11;
+  --fe1-naranja-fondo: #fff1e0;
+  --fe1-gris: #5b6b7f;
+  --fe1-gris-fondo: #f2f4f7;
+  --fe1-borde: #c9d6e4;
+  --fe1-blanco: #ffffff;
+  --fe1-radio: 18px;
+  --fe1-radio-grande: 26px;
+  --fe1-sombra: 0 10px 30px rgba(31, 56, 100, 0.12);
+}
+
+/* --- Base ---------------------------------------------------------------- */
+
+html,
+body,
+[class*="css"] {
+  font-family: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  color: var(--fe1-azul);
+}
+
+.block-container {
+  padding-top: 2.2rem;
+  padding-bottom: 4rem;
+  max-width: 1150px;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--fe1-azul);
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--fe1-azul-medio);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--fe1-naranja);
+}
+
+:focus-visible {
+  outline: 3px solid var(--fe1-naranja);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* --- Encabezado (hero) --------------------------------------------------- */
+
+.fe1-hero {
+  background: linear-gradient(135deg, var(--fe1-azul) 0%, var(--fe1-azul-medio) 100%);
+  color: var(--fe1-blanco);
+  padding: 2.4rem 2.2rem;
+  border-radius: var(--fe1-radio-grande);
+  margin-bottom: 1.6rem;
+  box-shadow: var(--fe1-sombra);
+}
+
+.fe1-hero h1 {
+  color: var(--fe1-blanco);
+  font-size: 2.5rem;
+  line-height: 1.15;
+  margin: 0 0 0.6rem 0;
+}
+
+.fe1-hero p {
+  color: #dce7f3;
+  font-size: 1.08rem;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 62ch;
+}
+
+.fe1-hero--pequeno {
+  padding: 1.5rem 1.8rem;
+  border-radius: var(--fe1-radio);
+}
+
+.fe1-hero--pequeno h1 {
+  font-size: 1.9rem;
+}
+
+/* --- Etiqueta de estado -------------------------------------------------- */
+
+.fe1-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.fe1-badge--activo {
+  background: var(--fe1-verde-fondo);
+  color: var(--fe1-verde);
+}
+
+.fe1-badge--en_silencio {
+  background: var(--fe1-gris-fondo);
+  color: var(--fe1-gris);
+}
+
+.fe1-badge--se_quedo {
+  background: #e8eefc;
+  color: var(--fe1-azul-medio);
+}
+
+.fe1-badge--en_orbita {
+  background: #e6f0fb;
+  color: #1d5c96;
+}
+
+.fe1-badge--perdido {
+  background: var(--fe1-naranja-fondo);
+  color: var(--fe1-naranja);
+}
+
+/* --- Imagen pendiente ---------------------------------------------------- */
+
+.fe1-sin-imagen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 160px;
+  padding: 1rem;
+  border: 2px dashed var(--fe1-borde);
+  border-radius: var(--fe1-radio);
+  background: var(--fe1-azul-claro);
+  color: var(--fe1-gris);
+  font-size: 2rem;
+  text-align: center;
+}
+
+.fe1-sin-imagen small {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* --- Mapa sin imagen de fondo -------------------------------------------- */
+
+.fe1-mapa-vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 220px;
+  padding: 1.5rem;
+  border-radius: var(--fe1-radio);
+  background: radial-gradient(circle at 30% 30%, #2e5c8a 0%, #1f3864 55%, #101d33 100%);
+  color: #dce7f3;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.fe1-mapa-vacio small {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #a9c1da;
+}
+
+/* --- Controles ----------------------------------------------------------- */
+
+.stButton > button {
+  border-radius: 12px;
+  font-weight: 800;
+  min-height: 2.7rem;
+  border: 2px solid var(--fe1-borde);
+  background: var(--fe1-blanco);
+  color: var(--fe1-azul);
+}
+
+.stButton > button:hover {
+  border-color: var(--fe1-azul-medio);
+  color: var(--fe1-azul-medio);
+}
+
+.stButton > button[kind="primary"] {
+  background: var(--fe1-azul);
+  border-color: var(--fe1-azul);
+  color: var(--fe1-blanco);
+}
+
+.stButton > button[kind="primary"]:hover {
+  background: var(--fe1-azul-medio);
+  border-color: var(--fe1-azul-medio);
+  color: var(--fe1-blanco);
+}
+
+[data-testid="stMetricValue"] {
+  font-size: 1.55rem;
+  color: var(--fe1-azul);
+}
+
+[data-testid="stMetricLabel"] {
+  font-size: 0.95rem;
+  color: var(--fe1-gris);
+}
+
+/* --- Contenedores con borde (tarjetas) ----------------------------------- */
+
+[data-testid="stVerticalBlockBorderWrapper"] {
+  border-radius: var(--fe1-radio);
+  background: var(--fe1-blanco);
+}
+
+/* --- Celular ------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .block-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.2rem;
+  }
+
+  .fe1-hero {
+    padding: 1.5rem 1.2rem;
+    border-radius: var(--fe1-radio);
+  }
+
+  .fe1-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .fe1-hero p {
+    font-size: 1rem;
+  }
+
+  [data-testid="stMetricValue"] {
+    font-size: 1.3rem;
+  }
+}

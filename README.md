@@ -9,10 +9,11 @@ Una experiencia interactiva para que niños y niñas de 8 a 12 años descubran q
 **Reto:** [Abandoned but not Forgotten — NASA Space Apps Challenge 2026](https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/)
 
 **Documentación del equipo:**
-- [Plan de tareas por equipo](docs/TAREAS.md)
+- **[Guía de trabajo del equipo (Word) — empezar aquí](docs/Guia_Equipo.docx)**
 - [Contrato de datos](docs/CONTRATO_DATOS.md)
-- [Plantilla de fichas](docs/PLANTILLA_FICHAS.md)
-- [Registro de fuentes](docs/FUENTES.md)
+- [Registro de decisiones](docs/DECISIONES.md)
+- [Protocolo de fuentes](docs/FUENTES.md)
+- [Guion del pitch](docs/PITCH.md)
 
 ---
 
@@ -67,7 +68,6 @@ El detalle de los campos está en [docs/CONTRATO_DATOS.md](docs/CONTRATO_DATOS.m
 | NASA Science | Fichas de misión y descubrimientos | https://science.nasa.gov/science-missions/ |
 | JPL Horizons | Posiciones y distancias | https://ssd.jpl.nasa.gov/horizons/ |
 | Horizons API | Datos en vivo | https://ssd-api.jpl.nasa.gov/doc/horizons.html |
-| DSN Now | Comunicación en vivo (best-effort) | https://eyes.nasa.gov/apps/dsn-now/dsn.html |
 | NASA Images | Imágenes y metadatos | https://images.nasa.gov/ |
 | NASA Photojournal | Imágenes con pies de foto técnicos | https://photojournal.jpl.nasa.gov/ |
 | NASA Space Place | Lenguaje para niños | https://spaceplace.nasa.gov/sp/ |
@@ -93,51 +93,60 @@ El protocolo completo está en [docs/FUENTES.md](docs/FUENTES.md).
 
 ```
 nasaSpace2026/
-├─ app.py                  # entrada de Streamlit (FE1)
-├─ pages/                  # pantallas (FE2)
-├─ components/             # tarjetas, badges (FE1)
-├─ maps/                   # mapas y marcadores (FE2)
-├─ core/                   # datos, APIs, caché, respaldo (BE)
+├─ app.py                    # entrada de Streamlit (FE)
+├─ pages/                    # una pantalla por archivo (FE)
+├─ components/               # tarjetas, mapa y estilos reutilizables (FE)
+├─ contenido/
+│  └─ fichas.csv             # fichas de las 10 piezas (Investigación)
+├─ scripts/
+│  ├─ fichas_a_json.py       # CSV -> data/artifacts.json (BE)
+│  ├─ actualizar_snapshot.py # Horizons -> live_snapshot.json (BE)
+│  └─ generar_guia_word.py   # regenera docs/Guia_Equipo.docx (BE)
+├─ core/                     # datos, API, caché y respaldo (BE)
 ├─ data/
-│  ├─ artifacts.json       # dataset curado (CD)
-│  ├─ live_snapshot.json   # respaldo de datos en vivo (BE)
-│  └─ sources.json         # registro de fuentes (CD)
+│  ├─ artifacts.json         # dataset generado (no editar a mano)
+│  └─ live_snapshot.json     # respaldo de datos en vivo (no editar a mano)
 ├─ assets/
-│  ├─ img/                 # imágenes con créditos (CD)
-│  ├─ maps/                # imágenes base de mapas (FE2)
-│  └─ styles.css           # sistema visual (FE1)
+│  ├─ img/                   # imágenes con créditos (Investigación)
+│  ├─ maps/                  # fondos y posiciones de marcadores (FE)
+│  └─ styles.css             # sistema visual (FE)
 ├─ docs/
-│  ├─ TAREAS.md
+│  ├─ Guia_Equipo.docx       # guía única de trabajo diario
 │  ├─ CONTRATO_DATOS.md
-│  ├─ PLANTILLA_FICHAS.md
-│  ├─ FUENTES.md
 │  ├─ DECISIONES.md
+│  ├─ FUENTES.md
 │  └─ PITCH.md
-├─ tests/
-└─ requirements.txt        # dependencias (BE)
+├─ tests/                    # pruebas con pytest (BE)
+├─ .streamlit/config.toml    # tema de la app (BE)
+├─ .github/                  # plantilla de pull request
+├─ requirements.txt          # dependencias de la app (BE)
+└─ requirements-dev.txt      # dependencias de desarrollo (BE)
 ```
+
+Cada carpeta tiene su propio `README.md` con lo que va dentro y el formato
+esperado.
 
 ---
 
 ## Cómo ejecutarlo localmente
 
-Requisitos: Python 3.10 o superior.
+Requisitos: Python 3.12 o superior.
 
-```bash
+```powershell
 python -m venv .venv
-
-# Windows
-.venv\Scripts\activate
-# macOS / Linux
-source .venv/bin/activate
-
-pip install -r requirements.txt
-streamlit run app.py
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe scripts\fichas_a_json.py
+.\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-La app se abre en `http://localhost:8501`.
+La app se abre en `http://localhost:8501`. En macOS o Linux, cambia
+`.\.venv\Scripts\python.exe` por `.venv/bin/python`.
 
-> `requirements.txt` y `app.py` los crea BE/FE1 en el primer bloque de trabajo. Si todavía no existen, el repo está en la fase de esqueleto.
+Para correr las pruebas:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+```
 
 ---
 
@@ -150,7 +159,8 @@ La app se abre en `http://localhost:8501`.
 | Backend e integraciones | Datos, APIs, caché, respaldo, deploy |
 | Contenido y datos | Fichas, fuentes, imágenes, verificación |
 
-Los detalles de tareas y dueños de archivos están en [docs/TAREAS.md](docs/TAREAS.md).
+El paso a paso por equipo, con herramientas y formatos, está en la
+[guía Word](docs/Guia_Equipo.docx).
 
 ---
 
@@ -158,7 +168,8 @@ Los detalles de tareas y dueños de archivos están en [docs/TAREAS.md](docs/TAR
 
 El proyecto se desarrolla en bloques de 44 horas con integraciones cada 4 horas. La regla principal es que `main` siempre esté desplegable y que cada archivo tenga un solo dueño.
 
-Ver [docs/TAREAS.md](docs/TAREAS.md).
+El cronograma de 44 horas, el ritual de integración y el checklist de la demo
+están en la [guía Word](docs/Guia_Equipo.docx).
 
 ---
 

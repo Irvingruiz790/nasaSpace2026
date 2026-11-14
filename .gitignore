@@ -6,6 +6,11 @@ __pycache__/
 venv/
 env/
 
+# Pruebas
+.pytest_cache/
+.coverage
+htmlcov/
+
 # Streamlit
 .streamlit/secrets.toml
 
@@ -25,3 +30,6 @@ desktop.ini
 # Temporales
 *.log
 *.tmp
+
+# Archivos bloqueados de Word/Excel mientras el documento está abierto
+~$*
