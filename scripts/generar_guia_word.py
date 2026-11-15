@@ -1231,7 +1231,7 @@ tabla(
         ["Figma o Excalidraw", "Dibujar el wireframe antes de programar"],
         ["Chrome o Edge con DevTools", "Ver la app como en un celular (modo dispositivo)"],
         ["Inkscape o Photopea", "Preparar las imágenes de fondo de los mapas"],
-        ["Google Fonts", "Tipografía legible para niños (Nunito, Fredoka)"],
+        ["Fuentes locales en static/fonts/", "Exo 2 y Overpass, empaquetadas y sin CDN"],
         ["Squoosh", "Comprimir imágenes de fondo"],
         ["WebAIM Contrast Checker", "Verificar que el texto se lea bien"],
     ],
@@ -1245,6 +1245,7 @@ tabla(
     [
         ["Python (.py)", "Cada pantalla y cada componente", "app.py, pages/, components/"],
         ["CSS", "Colores, tipografía, tarjetas, badges", "assets/styles.css"],
+        ["WOFF2", "Fuentes Exo 2 y Overpass con su licencia OFL", "static/fonts/"],
         ["JSON", "Posiciones x/y de los marcadores en cada mapa", "assets/maps/posiciones.json"],
         ["JPG o WebP", "Fondos de mapas e imágenes", "assets/maps/ y assets/img/"],
     ],
@@ -1369,8 +1370,11 @@ codigo(
 paso(
     9,
     "Estilos y accesibilidad",
-    "Un solo archivo de CSS con variables de color. Texto mínimo de 16 px, contraste "
-    "alto, foco visible y alt text en todas las imágenes.",
+    "Un solo archivo de CSS con variables de color. Usa la paleta oficial de NASA "
+    "Space Apps: fondo Deep Blue, acentos Electric/Neon Blue y Neon Yellow solo "
+    "para resaltar. Los títulos van en Exo 2 y el texto en Overpass, empaquetadas "
+    "en static/fonts/. Texto mínimo de 16 px, contraste alto, foco visible y alt "
+    "text en todas las imágenes.",
     "se lee en un celular sin hacer zoom.",
 )
 
@@ -1391,6 +1395,7 @@ vinetas(
         "No cambies nombres de campos ni de imágenes.",
         "No agregues librerías sin avisar a backend.",
         "No uses CSS por CDN: si se cae el internet, la app se ve rota.",
+        "No cambies las fuentes locales de static/fonts/ sin subir su licencia OFL.",
         "No dejes una pantalla en blanco: siempre un mensaje claro.",
     ]
 )

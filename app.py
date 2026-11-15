@@ -9,7 +9,7 @@ from __future__ import annotations
 import streamlit as st
 
 from components.tarjeta import tarjeta
-from components.ui import aplicar_estilos
+from components.ui import aplicar_estilos, encabezado
 from core import datos
 
 st.set_page_config(
@@ -20,13 +20,12 @@ st.set_page_config(
 
 aplicar_estilos()
 
-st.markdown(
-    '<div class="fe1-hero">'
-    "<h1>¿Dónde está ahora?</h1>"
-    "<p>Un viaje por las máquinas que la NASA dejó en la Luna, en Marte y en el "
-    "espacio profundo. Todavía están ahí. Algunas siguen hablando.</p>"
-    "</div>",
-    unsafe_allow_html=True,
+encabezado(
+    "¿Dónde está ahora?",
+    "Un viaje por las máquinas que la NASA dejó en la Luna, en Marte y en el "
+    "espacio profundo. Todavía están ahí. Algunas siguen hablando.",
+    variante="inicio",
+    grande=True,
 )
 
 piezas = datos.cargar_piezas()

@@ -31,6 +31,7 @@ encabezado(
     "Quiz",
     "Tres preguntas rápidas para ver si estuviste poniendo atención. "
     "Puedes intentarlo todas las veces que quieras.",
+    variante="quiz",
 )
 
 

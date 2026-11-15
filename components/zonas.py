@@ -28,7 +28,7 @@ def pagina_zona(zona: str, titulo: str, descripcion: str, icono: str) -> None:
         layout="wide",
     )
     aplicar_estilos()
-    encabezado(titulo, descripcion)
+    encabezado(titulo, descripcion, variante=zona.replace("_", "-"))
 
     piezas = datos.por_zona(datos.cargar_piezas(), zona)
 

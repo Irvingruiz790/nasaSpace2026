@@ -1,13 +1,33 @@
 # Configuración de Streamlit para «¿Dónde está ahora?».
 # Dueño: Backend. No cambiar sin avisar al equipo.
+#
+# Identidad visual NASA Space Apps (Brand Guide, junio 2026):
+# - Paleta oficial en tema oscuro: Deep Blue de fondo, Electric Blue y Neon Blue
+#   en acentos, Neon Yellow solo como acento (regla 60-30-10).
+# - Exo 2 para títulos y Overpass para texto. Las dos son OFL y viajan en
+#   `static/fonts/`, así que la app se ve igual sin internet.
 
 [theme]
-base = "light"
-primaryColor = "#1F3864"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#EEF3F8"
-textColor = "#1F3864"
-font = "sans serif"
+base = "dark"
+primaryColor = "#EAFE07"
+backgroundColor = "#07173F"
+secondaryBackgroundColor = "#0A2258"
+textColor = "#EAF0FF"
+font = "Overpass, sans-serif"
+headingFont = "Exo 2, sans-serif"
+headingFontWeights = [800]
+
+[[theme.fontFaces]]
+family = "Exo 2"
+url = "app/static/fonts/exo2-latin.woff2"
+weight_range = "100 900"
+style = "normal"
+
+[[theme.fontFaces]]
+family = "Overpass"
+url = "app/static/fonts/overpass-latin.woff2"
+weight_range = "100 900"
+style = "normal"
 
 [browser]
 # Streamlit Cloud no necesita telemetría y el hackatón no la usa.
@@ -15,3 +35,6 @@ gatherUsageStats = false
 
 [server]
 headless = true
+# Necesario para que el navegador pueda bajar las fuentes de `static/fonts/`
+# desde `/app/static/...`. Sin esto, los @font-face dan 404.
+enableStaticServing = true

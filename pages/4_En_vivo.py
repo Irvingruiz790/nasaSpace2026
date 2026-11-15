@@ -27,6 +27,7 @@ encabezado(
     "En vivo",
     "Cuánto han viajado estas naves y cuánto tarda su señal en llegar a la "
     "Tierra. El dato se calcula con JPL Horizons.",
+    variante="vivo",
 )
 
 piezas = datos.cargar_piezas()
