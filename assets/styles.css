@@ -506,6 +506,98 @@ code {
 }
 
 /* --- Métricas ------------------------------------------------------------ */
+/* Selector solar: los destinos son botones nativos (teclado y pantalla táctil). */
+.st-key-sistema_solar {
+  position: relative;
+  min-height: 340px;
+  border: 1px solid var(--fe1-borde);
+  border-radius: var(--fe1-radio);
+  background: radial-gradient(ellipse at 0% 55%, #623d13 0%, #07173f 35%, #030c24 100%);
+  isolation: isolate;
+}
+.fe2-orbitas {
+  position: relative;
+  height: 338px;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: var(--fe1-radio);
+  background-image: var(--fe1-estrellas);
+}
+.fe2-orbitas::before {
+  content: "";
+  position: absolute;
+  width: 65%;
+  height: 220px;
+  top: 45px;
+  left: -20%;
+  border: 1px solid #93a7ce;
+  border-radius: 50%;
+  box-shadow: 0 0 0 55px #93a7ce18, 0 0 0 110px #93a7ce12;
+}
+.fe2-sol, .fe2-tierra {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+}
+.fe2-sol {
+  left: -25px;
+  top: 110px;
+  width: 100px;
+  height: 100px;
+  color: #07173f;
+  background: radial-gradient(circle at 30% 30%, #fff2a0, #ffac25 65%, #e43700);
+  box-shadow: 0 0 35px #ffac2566;
+}
+.fe2-tierra {
+  left: 22%;
+  top: 210px;
+  width: 65px;
+  height: 65px;
+  font-size: 0.85rem;
+  color: white;
+  background: radial-gradient(circle at 30% 25%, #2e96f5, #0042a6 40%, #07173f 80%);
+}
+.st-key-sistema_solar .st-key-destino_luna,
+.st-key-sistema_solar .st-key-destino_marte,
+.st-key-sistema_solar .st-key-destino_profundo {
+  position: absolute;
+  width: 26%;
+  top: 65px;
+}
+.st-key-sistema_solar .st-key-destino_luna { left: 15%; }
+.st-key-sistema_solar .st-key-destino_marte { left: 44%; top: 150px; }
+.st-key-sistema_solar .st-key-destino_profundo { left: 72%; top: 45px; }
+.st-key-sistema_solar button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.6rem 0.2rem;
+  background: #07173fcc;
+  color: white;
+  min-height: 130px;
+  white-space: normal;
+}
+.st-key-sistema_solar button::before {
+  content: "";
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #e5e8f0, #7e8799 45%, #18243a 85%);
+  transition: transform 160ms ease;
+}
+.st-key-destino_marte button::before {
+  background: radial-gradient(circle at 30% 25%, #ffb082, #ad482e 45%, #38180f 85%);
+}
+.st-key-destino_profundo button::before {
+  background: radial-gradient(ellipse at 40% 45%, #fff 0%, #2e96f5 8%, #482762 30%, #07173f 65%);
+  box-shadow: 0 0 20px #2e96f555;
+}
+.st-key-sistema_solar button:hover::before,
+.st-key-sistema_solar button:focus-visible::before { transform: scale(1.08); }
 
 [data-testid="stMetric"] {
   padding: 0.9rem 1rem;

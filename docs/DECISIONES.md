@@ -32,6 +32,16 @@
 
 ---
 
+## Fase 2 — 2026-11-15
+
+- FE: inicio usa un selector solar ilustrado con CSS local y botones Streamlit
+  para Luna, Marte y espacio profundo; tamaños y distancias no están a escala.
+- FE: «Ver ficha» ofrece una vista previa textual mediante `help` nativo.
+  El clic conserva el recorrido existente y funciona en pantallas táctiles.
+- FE: mantener mapas 2D con 10 horas restantes. El reemplazo 3D exige nuevas
+  coordenadas y comunicación de selección con Python; estimación y condiciones
+  en [VIABILIDAD_3D.md](VIABILIDAD_3D.md).
+
 ## Cómo agregar una decisión
 
 1. Escribe la fecha.

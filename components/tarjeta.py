@@ -41,6 +41,17 @@ def tarjeta(pieza: dict[str, Any], *, mostrar_boton: bool = True) -> None:
             st.write(pieza.get("ubicacion_texto", ""))
 
             if mostrar_boton:
-                if st.button("Ver ficha", key=f"ver_{pieza.get('id')}"):
+                historia = pieza.get("historia") or {}
+                resumen = str(historia.get("que_es") or "Explora la historia de esta máquina.")
+                vista_previa = (
+                    f"**{pieza.get('nombre', 'Pieza')}**\n\n"
+                    f"{resumen}\n\n"
+                    f"**Ahora:** {pieza.get('ubicacion_texto', 'Ubicación por confirmar')}"
+                )
+                if st.button(
+                    "Ver ficha",
+                    key=f"ver_{pieza.get('id')}",
+                    help=vista_previa,
+                ):
                     st.session_state["pieza_sel"] = pieza.get("id")
                     st.switch_page("pages/7_Ficha.py")
