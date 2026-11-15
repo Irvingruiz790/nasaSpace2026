@@ -16,6 +16,8 @@ fuentes tipográficas viven aquí y no en `assets/`: desde `assets/` darían 404
 | `fonts/OFL-Orbitron.txt` | Licencia de Orbitron | — |
 | `fonts/OFL-Overpass.txt` | Licencia de Overpass | — |
 | `img/encabezados/` | Fondos fotográficos de los encabezados (1200 × 675) | Dominio público NASA y una imagen aportada por el equipo |
+| `img/marcadores/` | Ilustraciones de los botones de los mapas (PNG con fondo transparente) | Aportadas por el equipo |
+| `img/sistema_solar/` | Globos y fondo del selector solar | Dominio público NASA |
 
 Los seis fondos se recortaron a 1200 × 675 px para que pesen menos de
 300 KB. La portada es una ilustración de Marte, la Luna y la Tierra aportada
@@ -34,6 +36,34 @@ otros cuatro salen del archivo de imágenes del NSSDCA:
 Las dos familias son libres, se pueden empaquetar y se sirven desde el propio
 dominio de la app. Así se ve igual sin internet y no hay peticiones a Google
 Fonts ni a ningún CDN.
+
+## Marcadores de los mapas
+
+Los botones de los mapas de Luna, Marte y espacio profundo muestran una
+ilustración de cada pieza en vez de su nombre. Son 10 PNG con fondo
+transparente, recortados al contenido, de 512 px de lado como máximo y menos
+de 300 KB cada uno. El CSS (`assets/styles.css`) los pinta como fondo del
+botón; el nombre completo de la ficha sigue disponible como tooltip y para
+lectores de pantalla.
+
+| Archivo en `img/marcadores/` | Ilustración | Uso en el mapa |
+|---|---|---|
+| `apollo-11-lm.png` | Etapa de descenso del módulo Eagle | Marcador del Mar de la Tranquilidad |
+| `apollo-17-lrv.png` | Vehículo lunar (LRV-3) | Marcador del valle Taurus-Littrow |
+| `surveyor-3.png` | Lander Surveyor 3 | Marcador de Oceanus Procellarum |
+| `sojourner.png` | Rover Sojourner | Marcador de Ares Vallis |
+| `opportunity.png` | Rover Opportunity | Marcador del cráter Endeavour |
+| `ingenuity.png` | Helicóptero Ingenuity | Marcador del cráter Jezero |
+| `spirit.png` | Rover Spirit | Fila «Al otro lado de Marte» |
+| `insight.png` | Lander InSight | Fila «Al otro lado de Marte» |
+| `voyager-1.png` | Sonda Voyager 1 | Marcador en el espacio profundo |
+| `voyager-2.png` | Sonda Voyager 2 | Marcador en el espacio profundo |
+
+Las ilustraciones las aportó el equipo y son del mismo estilo que la portada
+(`inicio_tres_mundos.jpg`). El fondo plano de cada una se quitó antes de
+publicarlas (PNG con transparencia), así que fluyen sobre cualquier fondo del
+mapa. Para agregar una pieza nueva: guardar el PNG aquí con el `id` del CSV
+como nombre y copiar un bloque de `--marcador-img` en `assets/styles.css`.
 
 ## Cómo se sirven
 

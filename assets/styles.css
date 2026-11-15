@@ -783,25 +783,121 @@ code {
   pointer-events: auto;
 }
 
-[class*="st-key-mapa_"] [class*="st-key-marcador_"] button {
+/* Los marcadores son «stickers»: la ilustración de la pieza sobre un panel
+   translúcido. El texto del botón se oculta con `font-size: 0` pero sigue en
+   el DOM, así que el nombre accesible y el tooltip de `help` (el nombre
+   completo de la ficha) no se pierden. Las ilustraciones viven en
+   `static/img/marcadores/` con el fondo ya removido; cada botón declara su
+   imagen en la variable `--marcador-img` para que el hover de `.stButton`
+   (que usa el atajo `background:`) no pueda borrarla. */
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button,
+[class*="st-key-suelto_"] button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 74px;
   min-height: 0;
-  padding: 0.4rem 0.75rem;
+  padding: 0.35rem;
   border: 2px solid var(--fe1-yonder);
-  border-radius: 999px;
-  background: var(--fe1-white);
-  color: var(--fe1-deep);
-  font-size: 0.85rem;
-  font-weight: 800;
-  line-height: 1.1;
-  white-space: nowrap;
+  border-radius: 16px;
+  background-color: rgba(10, 34, 88, 0.62);
+  background-image: var(--marcador-img, none);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  color: transparent;
+  font-size: 0;
+  line-height: 1;
   box-shadow: 0 6px 16px rgba(2, 8, 25, 0.5);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+/* Streamlit envuelve la etiqueta del botón en su propio párrafo con tamaño
+   de letra propio: se oculta aquí también. */
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button p,
+[class*="st-key-suelto_"] button p {
+  margin: 0;
+  font-size: 0;
+}
+
+/* La fila de piezas fuera del disco usa el mismo sticker, a lo ancho de su
+   columna y más alto, para que las ilustraciones respiren. */
+[class*="st-key-suelto_"] button {
+  width: 100%;
+  height: 118px;
 }
 
 [class*="st-key-mapa_"] [class*="st-key-marcador_"] button:hover,
-[class*="st-key-mapa_"] [class*="st-key-marcador_"] button:focus-visible {
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button:focus-visible,
+[class*="st-key-suelto_"] button:hover,
+[class*="st-key-suelto_"] button:focus-visible {
   border-color: var(--fe1-yellow);
-  background: var(--fe1-yellow);
-  color: var(--fe1-deep);
+  background-color: rgba(14, 44, 107, 0.88);
+  background-image: var(--marcador-img, none);
+  transform: scale(1.06);
+}
+
+/* --- Ilustraciones de los marcadores ------------------------------------- */
+/* Una regla por pieza: el `id` del CSV es el nombre del archivo PNG. El
+   prefijo `suelto_` cubre las piezas de la fila «Al otro lado de Marte»
+   (Spirit e InSight); si otra pieza pierde su posición en el mapa, solo hace
+   falta copiar su bloque con ese prefijo. */
+
+/* Luna */
+[class*="st-key-marcador_luna_apollo-11-lm"] button,
+[class*="st-key-suelto_luna_apollo-11-lm"] button {
+  --marcador-img: url("/app/static/img/marcadores/apollo-11-lm.png");
+}
+
+[class*="st-key-marcador_luna_apollo-17-lrv"] button,
+[class*="st-key-suelto_luna_apollo-17-lrv"] button {
+  --marcador-img: url("/app/static/img/marcadores/apollo-17-lrv.png");
+}
+
+[class*="st-key-marcador_luna_surveyor-3"] button,
+[class*="st-key-suelto_luna_surveyor-3"] button {
+  --marcador-img: url("/app/static/img/marcadores/surveyor-3.png");
+}
+
+/* Marte */
+[class*="st-key-marcador_marte_sojourner"] button,
+[class*="st-key-suelto_marte_sojourner"] button {
+  --marcador-img: url("/app/static/img/marcadores/sojourner.png");
+}
+
+[class*="st-key-marcador_marte_opportunity"] button,
+[class*="st-key-suelto_marte_opportunity"] button {
+  --marcador-img: url("/app/static/img/marcadores/opportunity.png");
+}
+
+[class*="st-key-marcador_marte_ingenuity"] button,
+[class*="st-key-suelto_marte_ingenuity"] button {
+  --marcador-img: url("/app/static/img/marcadores/ingenuity.png");
+}
+
+[class*="st-key-marcador_marte_spirit"] button,
+[class*="st-key-suelto_marte_spirit"] button {
+  --marcador-img: url("/app/static/img/marcadores/spirit.png");
+}
+
+[class*="st-key-marcador_marte_insight"] button,
+[class*="st-key-suelto_marte_insight"] button {
+  --marcador-img: url("/app/static/img/marcadores/insight.png");
+}
+
+/* Espacio profundo */
+[class*="st-key-marcador_espacio_profundo_voyager-1"] button,
+[class*="st-key-suelto_espacio_profundo_voyager-1"] button {
+  --marcador-img: url("/app/static/img/marcadores/voyager-1.png");
+}
+
+[class*="st-key-marcador_espacio_profundo_voyager-2"] button,
+[class*="st-key-suelto_espacio_profundo_voyager-2"] button {
+  --marcador-img: url("/app/static/img/marcadores/voyager-2.png");
 }
 
 /* --- Aviso al copiar el enlace de un título ------------------------------ */
@@ -919,9 +1015,15 @@ code {
   }
 
   [class*="st-key-mapa_"] [class*="st-key-marcador_"] button {
-    padding: 0.35rem 0.55rem;
+    width: 76px;
+    height: 58px;
+    padding: 0.25rem;
     border-width: 1.5px;
-    font-size: 0.75rem;
+    border-radius: 13px;
     box-shadow: 0 4px 10px rgba(2, 8, 25, 0.5);
+  }
+
+  [class*="st-key-suelto_"] button {
+    height: 96px;
   }
 }
