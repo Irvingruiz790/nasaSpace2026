@@ -5,14 +5,13 @@
     "surveyor-3": { "x": 36.7, "y": 52.3 }
   },
   "marte": {
-    "sojourner": { "x": 15.7, "y": 38.2 },
-    "spirit": { "x": 73.7, "y": 58.9 },
-    "opportunity": { "x": 23.4, "y": 51.2 },
-    "insight": { "x": 62.7, "y": 47.3 },
-    "ingenuity": { "x": 46.5, "y": 38.8 }
+    "sojourner": { "x": 28.9, "y": 35.7 },
+    "opportunity": { "x": 41.3, "y": 51.5 },
+    "ingenuity": { "x": 78.5, "y": 36.3 }
   },
   "espacio_profundo": {
     "voyager-1": { "x": 66, "y": 32 },
     "voyager-2": { "x": 38, "y": 58 }
-  }
+  },
+  "al_otro_lado": ["spirit", "insight"]
 }

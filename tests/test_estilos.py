@@ -24,6 +24,7 @@ FONDOS = (
     "marte_viking1.jpg",
     "espacio_voyager.jpg",
     "vivo_apollo8.jpg",
+    "quiz_sistema_solar.jpg",
     "inicio_tres_mundos.jpg",
 )
 
@@ -79,7 +80,7 @@ def test_el_css_reserva_espacio_para_la_barra_superior(css: str) -> None:
     assert "padding-top: 4.75rem" in css
 
 
-def test_el_css_usa_fotos_reales_en_los_cinco_encabezados(css: str) -> None:
+def test_el_css_usa_fotos_reales_en_los_seis_encabezados(css: str) -> None:
     for fondo in FONDOS:
         assert f"/app/static/img/encabezados/{fondo}" in css
 

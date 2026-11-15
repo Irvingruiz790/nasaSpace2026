@@ -12,8 +12,8 @@ def sistema_solar() -> None:
     with st.container(key="sistema_solar"):
         st.html(
             '<div class="fe2-orbitas" aria-hidden="true">'
-            '<span class="fe2-sol">Sol</span>'
-            '<span class="fe2-tierra">Tierra</span></div>'
+            '<span class="fe2-sol"></span>'
+            '<span class="fe2-tierra"></span></div>'
         )
         destinos = (
             ("luna", "La Luna", "pages/1_Luna.py"),

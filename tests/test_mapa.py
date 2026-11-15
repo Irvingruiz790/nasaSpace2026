@@ -4,7 +4,13 @@ from __future__ import annotations
 
 import pytest
 
-from components.mapa import clase_key, coordenada, etiqueta_marcador, repartir
+from components.mapa import (
+    clase_key,
+    coordenada,
+    etiqueta_marcador,
+    letrero_sueltas,
+    repartir,
+)
 
 
 def pieza(**extra: object) -> dict:
@@ -68,3 +74,12 @@ def test_repartir_aguanta_un_json_raro() -> None:
 def test_la_clase_key_es_segura_para_css() -> None:
     assert clase_key("marcador_luna_apollo-11-lm") == "st-key-marcador_luna_apollo-11-lm"
     assert clase_key("a b.c") == "st-key-a-b-c"
+
+
+def test_el_letrero_de_marte_explica_la_cara_oculta() -> None:
+    assert letrero_sueltas("marte") == "Al otro lado de Marte"
+
+
+def test_las_demas_zonas_usan_el_letrero_generico() -> None:
+    assert letrero_sueltas("luna") == "Piezas sin posición en el mapa"
+    assert letrero_sueltas("espacio_profundo") == "Piezas sin posición en el mapa"

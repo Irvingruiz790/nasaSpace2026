@@ -41,7 +41,6 @@ def menu():
 partida = st.session_state.get("quiz_partida")
 if partida is None:
     with st.container(key="quiz_inicio"):
-        st.html('<div class="fe3-insignia" aria-hidden="true">✦</div>')
         st.subheader("¿Estás listo?")
         st.metric("Mejor puntuación de esta sesión", f"{st.session_state['quiz_mejor']} / 30")
         st.write("30 preguntas · 1 punto por acierto · Sin límite de tiempo")

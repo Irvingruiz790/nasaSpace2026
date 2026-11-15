@@ -27,6 +27,18 @@ FONDOS = {
     "espacio_profundo": "espacio_profundo.jpg",
 }
 
+# Las piezas que caen al otro lado del globo no se ven en el disco: en vez de
+# decir que «no tienen posición», se explica dónde están.
+LETREROS_SUELTAS = {
+    "marte": "Al otro lado de Marte",
+}
+LETRERO_SUELTAS = "Piezas sin posición en el mapa"
+
+
+def letrero_sueltas(zona: str) -> str:
+    """Frase que encabeza la fila de piezas que no caben en el mapa."""
+    return LETREROS_SUELTAS.get(zona, LETRERO_SUELTAS)
+
 # Un apodo más largo que esto ya es una frase, no una etiqueta de mapa.
 LARGO_APODO = 18
 LARGO_NOMBRE = 22
@@ -152,7 +164,7 @@ def mapa_zona(
                 )
 
     if sueltas:
-        st.caption("Piezas sin posición en el mapa")
+        st.caption(letrero_sueltas(zona))
         columnas = st.columns(len(sueltas))
         for columna, pieza in zip(columnas, sueltas):
             with columna:
