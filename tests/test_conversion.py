@@ -14,15 +14,15 @@ def test_convierte_el_csv_real(tmp_path) -> None:
         config.RAIZ / "contenido" / "fichas.csv", salida, escribir=True
     )
 
-    assert len(piezas) == 3
+    assert len(piezas) == 10
     assert datos.errores(problemas) == [], [str(p) for p in datos.errores(problemas)]
 
     guardado = json.loads(salida.read_text(encoding="utf-8"))
-    assert len(guardado["piezas"]) == 3
+    assert len(guardado["piezas"]) == 10
 
     voyager = datos.buscar(guardado["piezas"], "voyager-1")
     assert voyager is not None
-    assert voyager["historia"]["que_es"].startswith("Una nave")
+    assert voyager["historia"]["que_es"].startswith("Es la nave")
     assert len(voyager["fuentes"]) == 3
     assert voyager["lat"] is None
     assert voyager["horizons_id"] == "-31"
