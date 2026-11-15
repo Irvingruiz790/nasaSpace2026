@@ -30,6 +30,7 @@ encabezado(
     "Fuentes",
     "Cada dato de la app se puede rastrear a una página oficial de NASA. "
     "Si algo no está aquí, no debería estar en la app.",
+    variante="fuentes",
 )
 
 piezas = datos.cargar_piezas()

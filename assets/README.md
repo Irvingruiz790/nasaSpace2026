@@ -9,9 +9,17 @@ Aquí no hay código Python: solo archivos que la app muestra tal cual.
 
 | Ruta | Contenido | Formato |
 |---|---|---|
-| `styles.css` | Colores, tipografía, tarjetas y estados | CSS |
+| `styles.css` | Colores, tipografía, tarjetas, encabezados y estados | CSS |
 | `img/` | Fotos de las piezas | JPG o WebP |
 | `maps/` | Fondos de los mapas y coordenadas de marcadores | JPG/WebP + JSON |
+
+## Tipografía
+
+`styles.css` declara `@font-face` para **Exo 2** (títulos) y **Overpass**
+(texto). Los archivos no viven aquí: Streamlit solo sirve la carpeta `static/`
+del proyecto, así que las fuentes y sus licencias OFL están en
+[`static/fonts/`](../static/README.md). La app no pide ninguna fuente a
+internet.
 
 ## Reglas
 

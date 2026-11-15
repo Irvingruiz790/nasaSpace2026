@@ -11,7 +11,7 @@ Aquí vive lo que se repite en varias pantallas. No hay lógica de datos.
 |---|---|
 | `ui.py` | `aplicar_estilos()` y `encabezado()` |
 | `tarjeta.py` | Tarjeta de una pieza con imagen, estado y botón |
-| `mapa.py` | Fondo de zona y botones de marcadores |
+| `mapa.py` | Fondo de zona y marcadores encima, en sus coordenadas |
 | `zonas.py` | Página común de las tres zonas |
 | `__init__.py` | Marca la carpeta como paquete de Python |
 
@@ -23,6 +23,9 @@ Aquí vive lo que se repite en varias pantallas. No hay lógica de datos.
   `piezas` o `posiciones` ya cargadas. Solo pueden comprobar si existe un asset
   estático, nunca leer su contenido.
 - El estilo va en `assets/styles.css`, no en líneas `style="..."` sueltas.
+  La única excepción son las coordenadas de los marcadores: `mapa.py` genera
+  un `<style>` mínimo con `left`/`top`, porque salen de `posiciones.json` y
+  cambian con cada zona.
 - Usar las clases `fe1-*` que ya existen (`.fe1-hero`, `.fe1-badge`, etc.).
 
 ## Reglas

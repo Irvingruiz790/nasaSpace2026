@@ -35,7 +35,8 @@ van de 0 a 100, con el origen arriba a la izquierda.
 ```
 
 - La llave de cada pieza es su `id` del CSV.
-- Si una pieza no aparece en el JSON, se dibuja al centro (`x = 50`).
+- Si una pieza no aparece en el JSON, su botón se dibuja debajo del mapa, en
+  una fila aparte, para que nunca desaparezca.
 - Si una zona no tiene piezas todavía, se deja `{}`.
 - El archivo ya trae las 10 piezas del CSV repartidas en sus tres zonas.
 

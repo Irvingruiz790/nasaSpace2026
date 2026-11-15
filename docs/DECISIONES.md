@@ -16,6 +16,11 @@
 | 2026-11-14 | Cierre del pitch: hito de un día luz de Voyager 1 | CD | Cierre genérico | Es un evento real y cercano (18 nov 2026) |
 | 2026-11-14 | Investigación llena `contenido/fichas.csv` y backend genera `data/artifacts.json` | BE + CD | Investigación escribe el JSON a mano | Evita errores de sintaxis en un equipo sin experiencia técnica |
 | 2026-11-14 | Una guía única en Word (`docs/Guia_Equipo.docx`) como documento de trabajo diario | Todos | Los ocho documentos de `docs/` por separado | El equipo se perdía entre documentos; la guía tiene un paso a paso por rol |
+| 2026-11-14 | Paleta oficial de NASA Space Apps en tema oscuro: Deep Blue `#07173F` de fondo, Electric `#0042A6` y Neon Blue `#0960E1` en bloques, Neon Yellow `#EAFE07` solo como acento | FE | Paleta clara actual; azules inventados | Es la identidad documentada en la Brand Guide (jun 2026) y el amarillo como acento respeta la regla 60-30-10 |
+| 2026-11-14 | Tipografía Exo 2 (títulos) + Overpass (texto), empaquetadas en `static/fonts/` | FE | Fira Sans oficial; Orbitron; Alvaro Wide | Exo 2 da el aire espacial que pidió el equipo, Overpass mantiene legibilidad y las dos son OFL; «Alvaro Wide» no existe y «Alvaro» es solo uso personal |
+| 2026-11-14 | Las fuentes se sirven desde `static/` con `server.enableStaticServing`, no desde un CDN | FE + BE | Google Fonts por URL | Streamlit solo publica `./static`; sin red la app debe verse igual |
+| 2026-11-14 | Encabezado «Menú» y encabezados temáticos por sección con CSS propio | FE | Fotos de fondo por sección | La guía de marca pide no poner texto encima de fotografías; el patrón de estrellas es CSS y pesa 0 KB |
+| 2026-11-14 | Sin 3D real (WebGL/Three.js) por ahora | FE | Three.js o componente propio | Pesaría más de 600 KB, rompe «sin librerías nuevas» y castiga el celular; se prefieren esferas y fondos con CSS |
 
 ---
 

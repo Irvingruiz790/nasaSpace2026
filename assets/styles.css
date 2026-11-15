@@ -1,39 +1,89 @@
 /* ==========================================================================
-   ¿Dónde está ahora? — sistema visual
+   ¿Dónde está ahora? — sistema visual NASA Space Apps
    Dueño: Frontend.
 
    Reglas:
    - Todo el color sale de las variables de :root. No se escribe un color
      suelto en medio del archivo.
-   - Texto mínimo 16 px. Contraste alto. Foco visible.
-   - Nada de fuentes por CDN: si se cae el internet, la app se vería rota.
+   - Paleta oficial de NASA Space Apps (Brand Guide, junio 2026), en tema
+     oscuro: Deep Blue de fondo, Electric/Neon Blue en bloques y Neon Yellow
+     solo como acento (60-30-10). El amarillo nunca es fondo de lectura.
+   - Texto mínimo 16 px. Contraste AA. Foco visible. Celular de 390 px.
+   - Nada de fuentes por CDN: Exo 2 y Overpass viajan en `static/fonts/` y se
+     sirven desde `/app/static/...` con `server.enableStaticServing`.
    ========================================================================== */
 
+@font-face {
+  font-family: "Exo 2";
+  src: url("/app/static/fonts/exo2-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: url("/app/static/fonts/overpass-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --fe1-azul: #1f3864;
-  --fe1-azul-medio: #2e5c8a;
-  --fe1-azul-claro: #eef3f8;
-  --fe1-verde: #0b6b3a;
-  --fe1-verde-fondo: #d9f5e4;
-  --fe1-naranja: #c55a11;
-  --fe1-naranja-fondo: #fff1e0;
-  --fe1-gris: #5b6b7f;
-  --fe1-gris-fondo: #f2f4f7;
-  --fe1-borde: #c9d6e4;
-  --fe1-blanco: #ffffff;
+  /* Paleta oficial */
+  --fe1-deep: #07173f;
+  --fe1-electric: #0042a6;
+  --fe1-neon: #0960e1;
+  --fe1-yonder: #2e96f5;
+  --fe1-rocket: #e43700;
+  --fe1-martian: #8e1100;
+  --fe1-yellow: #eafe07;
+  --fe1-white: #ffffff;
+
+  /* Derivados para tema oscuro */
+  --fe1-fondo: var(--fe1-deep);
+  --fe1-superficie: #0a2258;
+  --fe1-superficie-alta: #0e2c6b;
+  --fe1-borde: #1e4185;
+  --fe1-borde-suave: rgba(46, 150, 245, 0.28);
+  --fe1-texto: #eaf0ff;
+  --fe1-texto-suave: #b9c8e8;
+  --fe1-texto-tenue: #93a7ce;
+
+  /* Forma y tipografía */
   --fe1-radio: 18px;
   --fe1-radio-grande: 26px;
-  --fe1-sombra: 0 10px 30px rgba(31, 56, 100, 0.12);
+  --fe1-sombra: 0 18px 40px rgba(2, 8, 25, 0.45);
+  --fe1-fuente-titulos: "Exo 2", "Segoe UI", system-ui, sans-serif;
+  --fe1-fuente-texto: "Overpass", "Segoe UI", system-ui, sans-serif;
+  --fe1-gradiente: linear-gradient(45deg, var(--fe1-electric) 0%, var(--fe1-deep) 100%);
+
+  /* Campo de estrellas dibujado solo con CSS */
+  --fe1-estrellas:
+    radial-gradient(1px 1px at 12% 24%, rgba(255, 255, 255, 0.85) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 68% 12%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 84% 68%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
+    radial-gradient(1.6px 1.6px at 31% 78%, rgba(255, 255, 255, 0.75) 50%, transparent 51%),
+    radial-gradient(1px 1px at 53% 46%, rgba(255, 255, 255, 0.5) 50%, transparent 51%);
 }
 
 /* --- Base ---------------------------------------------------------------- */
 
 html,
 body,
-[class*="css"] {
-  font-family: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+.stApp,
+[data-testid="stAppViewContainer"] {
+  font-family: var(--fe1-fuente-texto);
   font-size: 16px;
-  color: var(--fe1-azul);
+  color: var(--fe1-texto);
+  background-color: var(--fe1-fondo);
+}
+
+[data-testid="stAppViewContainer"] {
+  background-image:
+    radial-gradient(circle at 85% 0%, rgba(9, 96, 225, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 5% 92%, rgba(0, 66, 166, 0.28) 0%, transparent 50%);
+  background-attachment: fixed;
 }
 
 .block-container {
@@ -44,51 +94,144 @@ body,
 
 h1,
 h2,
-h3 {
-  color: var(--fe1-azul);
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--fe1-fuente-titulos);
+  font-weight: 800;
+  color: var(--fe1-texto);
   letter-spacing: -0.01em;
 }
 
+p,
+li,
+label,
+[data-testid="stMarkdownContainer"] {
+  line-height: 1.65;
+}
+
 a {
-  color: var(--fe1-azul-medio);
+  color: var(--fe1-yonder);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 a:hover {
-  color: var(--fe1-naranja);
+  color: var(--fe1-yellow);
+}
+
+strong {
+  color: var(--fe1-white);
+}
+
+hr,
+[data-testid="stDivider"] hr {
+  border-color: var(--fe1-borde);
+}
+
+code {
+  background: rgba(0, 66, 166, 0.35);
+  color: var(--fe1-texto);
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
 }
 
 :focus-visible {
-  outline: 3px solid var(--fe1-naranja);
+  outline: 3px solid var(--fe1-yellow);
   outline-offset: 3px;
   border-radius: 6px;
+}
+
+/* --- Barra lateral ------------------------------------------------------- */
+
+[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, #061336 0%, var(--fe1-deep) 100%);
+  border-right: 1px solid var(--fe1-borde);
+}
+
+[data-testid="stSidebarNav"]::before {
+  content: "Menú";
+  display: block;
+  margin: 0.2rem 0 0.9rem 0.65rem;
+  font-family: var(--fe1-fuente-titulos);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fe1-yellow);
+}
+
+[data-testid="stSidebarNavLink"] {
+  border-radius: 12px;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+[data-testid="stSidebarNavLink"]:hover {
+  background: rgba(46, 150, 245, 0.14);
+}
+
+[data-testid="stSidebarNavLink"]:hover span {
+  color: var(--fe1-white);
+}
+
+[data-testid="stSidebarNavLink"][aria-current="page"] {
+  background: rgba(9, 96, 225, 0.28);
+  box-shadow: inset 3px 0 0 var(--fe1-yellow);
+}
+
+/* Streamlit rotula «app» el enlace de la página raíz. Aquí se lee «Inicio».
+   El texto original se oculta con font-size 0 y el nombre accesible no cambia
+   hasta que migremos a `st.navigation`. */
+[data-testid="stSidebarNavLink"][href$="/"] [data-testid="stMarkdownContainer"] p {
+  font-size: 0;
+}
+
+[data-testid="stSidebarNavLink"][href$="/"] [data-testid="stMarkdownContainer"] p::after {
+  content: "Inicio";
+  font-size: 1rem;
 }
 
 /* --- Encabezado (hero) --------------------------------------------------- */
 
 .fe1-hero {
-  background: linear-gradient(135deg, var(--fe1-azul) 0%, var(--fe1-azul-medio) 100%);
-  color: var(--fe1-blanco);
+  position: relative;
+  overflow: hidden;
   padding: 2.4rem 2.2rem;
-  border-radius: var(--fe1-radio-grande);
   margin-bottom: 1.6rem;
+  border: 1px solid var(--fe1-borde);
+  border-radius: var(--fe1-radio-grande);
+  background: var(--fe1-gradiente);
   box-shadow: var(--fe1-sombra);
+  isolation: isolate;
+}
+
+.fe1-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--fe1-estrellas);
+  background-size: 240px 200px;
+  background-repeat: repeat;
+  opacity: 0.65;
+  pointer-events: none;
 }
 
 .fe1-hero h1 {
-  color: var(--fe1-blanco);
-  font-size: 2.5rem;
-  line-height: 1.15;
   margin: 0 0 0.6rem 0;
+  font-size: 2.5rem;
+  line-height: 1.12;
+  color: var(--fe1-white);
+  text-shadow: 0 2px 18px rgba(2, 8, 25, 0.55);
 }
 
 .fe1-hero p {
-  color: #dce7f3;
-  font-size: 1.08rem;
-  line-height: 1.55;
   margin: 0;
   max-width: 62ch;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: #dbe6ff;
 }
 
 .fe1-hero--pequeno {
@@ -100,11 +243,77 @@ a:hover {
   font-size: 1.9rem;
 }
 
+/* Encabezados temáticos: mismo hero, distinto cielo. */
+.fe1-hero--luna {
+  background:
+    radial-gradient(circle at 82% 26%, rgba(190, 205, 235, 0.35) 0%, transparent 46%),
+    linear-gradient(135deg, #1b2f5c 0%, #0a1c42 55%, var(--fe1-deep) 100%);
+}
+
+.fe1-hero--marte {
+  background:
+    radial-gradient(circle at 84% 22%, rgba(228, 55, 0, 0.55) 0%, transparent 48%),
+    linear-gradient(135deg, #6e1508 0%, #2a0b14 55%, var(--fe1-deep) 100%);
+}
+
+.fe1-hero--espacio-profundo {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(9, 96, 225, 0.5) 0%, transparent 45%),
+    linear-gradient(135deg, #041033 0%, var(--fe1-deep) 60%, #02081b 100%);
+}
+
+.fe1-hero--espacio-profundo::before {
+  opacity: 0.95;
+  background-size: 190px 160px;
+}
+
+.fe1-hero--vivo {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(46, 150, 245, 0.07) 0px,
+      rgba(46, 150, 245, 0.07) 1px,
+      transparent 1px,
+      transparent 7px
+    ),
+    linear-gradient(115deg, var(--fe1-electric) 0%, #07265c 45%, var(--fe1-deep) 100%);
+}
+
+.fe1-hero--quiz {
+  border-color: rgba(234, 254, 7, 0.4);
+  background:
+    radial-gradient(circle at 88% 20%, rgba(234, 254, 7, 0.1) 0%, transparent 40%),
+    linear-gradient(135deg, #0a2a6b 0%, var(--fe1-deep) 62%, #030c24 100%);
+}
+
+.fe1-hero--fuentes {
+  background:
+    linear-gradient(rgba(46, 150, 245, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 150, 245, 0.1) 1px, transparent 1px),
+    linear-gradient(135deg, #0e2c6b 0%, var(--fe1-deep) 70%);
+  background-size: 28px 28px, 28px 28px, auto;
+}
+
+.fe1-hero--inicio {
+  padding: 3.2rem 2.6rem;
+  background: linear-gradient(45deg, var(--fe1-electric) 0%, #06205a 55%, var(--fe1-deep) 100%);
+}
+
+.fe1-hero--inicio::before {
+  opacity: 0.85;
+  background-size: 260px 220px;
+}
+
+.fe1-hero--inicio h1 {
+  font-size: 3rem;
+}
+
 /* --- Etiqueta de estado -------------------------------------------------- */
 
 .fe1-badge {
   display: inline-block;
   padding: 0.3rem 0.8rem;
+  border: 1px solid transparent;
   border-radius: 999px;
   font-size: 0.82rem;
   font-weight: 800;
@@ -113,28 +322,33 @@ a:hover {
 }
 
 .fe1-badge--activo {
-  background: var(--fe1-verde-fondo);
-  color: var(--fe1-verde);
+  background: rgba(234, 254, 7, 0.14);
+  border-color: rgba(234, 254, 7, 0.45);
+  color: var(--fe1-yellow);
 }
 
 .fe1-badge--en_silencio {
-  background: var(--fe1-gris-fondo);
-  color: var(--fe1-gris);
+  background: rgba(185, 200, 232, 0.12);
+  border-color: rgba(185, 200, 232, 0.35);
+  color: var(--fe1-texto-suave);
 }
 
 .fe1-badge--se_quedo {
-  background: #e8eefc;
-  color: var(--fe1-azul-medio);
+  background: rgba(46, 150, 245, 0.16);
+  border-color: rgba(46, 150, 245, 0.5);
+  color: #a8d4ff;
 }
 
 .fe1-badge--en_orbita {
-  background: #e6f0fb;
-  color: #1d5c96;
+  background: rgba(9, 96, 225, 0.26);
+  border-color: rgba(9, 96, 225, 0.6);
+  color: #c3deff;
 }
 
 .fe1-badge--perdido {
-  background: var(--fe1-naranja-fondo);
-  color: var(--fe1-naranja);
+  background: rgba(228, 55, 0, 0.2);
+  border-color: rgba(228, 55, 0, 0.55);
+  color: #ffb59c;
 }
 
 /* --- Imagen pendiente ---------------------------------------------------- */
@@ -149,8 +363,8 @@ a:hover {
   padding: 1rem;
   border: 2px dashed var(--fe1-borde);
   border-radius: var(--fe1-radio);
-  background: var(--fe1-azul-claro);
-  color: var(--fe1-gris);
+  background: rgba(0, 66, 166, 0.18);
+  color: var(--fe1-texto-tenue);
   font-size: 2rem;
   text-align: center;
 }
@@ -170,9 +384,10 @@ a:hover {
   gap: 0.3rem;
   min-height: 220px;
   padding: 1.5rem;
+  border: 1px solid var(--fe1-borde);
   border-radius: var(--fe1-radio);
-  background: radial-gradient(circle at 30% 30%, #2e5c8a 0%, #1f3864 55%, #101d33 100%);
-  color: #dce7f3;
+  background: radial-gradient(circle at 30% 30%, #1e4185 0%, #0a2258 55%, #030c24 100%);
+  color: var(--fe1-texto-suave);
   font-size: 1.2rem;
   font-weight: 800;
   text-align: center;
@@ -181,52 +396,181 @@ a:hover {
 .fe1-mapa-vacio small {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #a9c1da;
+  color: var(--fe1-texto-tenue);
 }
 
 /* --- Controles ----------------------------------------------------------- */
 
 .stButton > button {
-  border-radius: 12px;
-  font-weight: 800;
   min-height: 2.7rem;
-  border: 2px solid var(--fe1-borde);
-  background: var(--fe1-blanco);
-  color: var(--fe1-azul);
+  padding: 0.45rem 1.05rem;
+  border: 1.5px solid var(--fe1-borde);
+  border-radius: 12px;
+  background: rgba(46, 150, 245, 0.1);
+  color: var(--fe1-texto);
+  font-family: var(--fe1-fuente-texto);
+  font-weight: 700;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
 
 .stButton > button:hover {
-  border-color: var(--fe1-azul-medio);
-  color: var(--fe1-azul-medio);
+  border-color: var(--fe1-yonder);
+  background: rgba(46, 150, 245, 0.2);
+  color: var(--fe1-white);
 }
 
 .stButton > button[kind="primary"] {
-  background: var(--fe1-azul);
-  border-color: var(--fe1-azul);
-  color: var(--fe1-blanco);
+  border-color: var(--fe1-yellow);
+  background: var(--fe1-yellow);
+  color: var(--fe1-deep);
+  font-weight: 800;
 }
 
 .stButton > button[kind="primary"]:hover {
-  background: var(--fe1-azul-medio);
-  border-color: var(--fe1-azul-medio);
-  color: var(--fe1-blanco);
+  border-color: #f4ff6b;
+  background: #f4ff6b;
+  color: var(--fe1-deep);
+}
+
+[data-testid="stPageLink-NavLink"] {
+  padding: 0.55rem 0.85rem;
+  border: 1.5px solid var(--fe1-borde);
+  border-radius: 12px;
+  background: rgba(46, 150, 245, 0.08);
+  color: var(--fe1-texto);
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+[data-testid="stPageLink-NavLink"]:hover {
+  border-color: var(--fe1-yonder);
+  background: rgba(46, 150, 245, 0.16);
+  color: var(--fe1-white);
+}
+
+/* --- Métricas ------------------------------------------------------------ */
+
+[data-testid="stMetric"] {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--fe1-borde);
+  border-radius: var(--fe1-radio);
+  background: linear-gradient(160deg, rgba(14, 44, 107, 0.85), rgba(10, 34, 88, 0.85));
 }
 
 [data-testid="stMetricValue"] {
-  font-size: 1.55rem;
-  color: var(--fe1-azul);
+  font-family: var(--fe1-fuente-titulos);
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--fe1-yellow);
 }
 
 [data-testid="stMetricLabel"] {
   font-size: 0.95rem;
-  color: var(--fe1-gris);
+  color: var(--fe1-texto-tenue);
 }
 
 /* --- Contenedores con borde (tarjetas) ----------------------------------- */
 
 [data-testid="stVerticalBlockBorderWrapper"] {
+  border: 1px solid var(--fe1-borde);
   border-radius: var(--fe1-radio);
-  background: var(--fe1-blanco);
+  background: linear-gradient(160deg, rgba(14, 44, 107, 0.92), rgba(10, 34, 88, 0.92));
+  box-shadow: var(--fe1-sombra);
+  transition: border-color 0.2s ease;
+}
+
+[data-testid="stVerticalBlockBorderWrapper"]:hover {
+  border-color: rgba(46, 150, 245, 0.65);
+}
+
+[data-testid="stVerticalBlockBorderWrapper"] img {
+  border-radius: 12px;
+}
+
+/* --- Avisos y campos ----------------------------------------------------- */
+
+[data-testid="stAlert"] {
+  border-radius: 12px;
+}
+
+[data-testid="stCaptionContainer"],
+[data-testid="stCaptionContainer"] p {
+  color: var(--fe1-texto-tenue);
+}
+
+/* --- Mapas con marcadores ------------------------------------------------ */
+
+/* El contenedor del mapa es la referencia de las coordenadas. Sin separación
+   interna, para que la capa de marcadores mida exactamente lo mismo que la
+   imagen de fondo. */
+[class*="st-key-mapa_"] {
+  position: relative;
+  gap: 0;
+}
+
+[class*="st-key-mapa_"] [data-testid="stImage"] {
+  margin: 0;
+}
+
+[class*="st-key-mapa_"] [data-testid="stImage"] img {
+  display: block;
+  width: 100%;
+  border-radius: var(--fe1-radio);
+}
+
+/* Capa transparente que cubre el fondo: los marcadores viven aquí dentro. */
+[class*="st-key-capa_"] {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+[class*="st-key-capa_"] [data-testid="stVerticalBlock"] {
+  gap: 0;
+  height: 100%;
+}
+
+/* Cada marcador se centra en su porcentaje y se sale del flujo normal. */
+[class*="st-key-marcador_"] {
+  position: absolute !important;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  width: auto !important;
+  pointer-events: auto;
+}
+
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button {
+  min-height: 0;
+  padding: 0.4rem 0.75rem;
+  border: 2px solid var(--fe1-yonder);
+  border-radius: 999px;
+  background: var(--fe1-white);
+  color: var(--fe1-deep);
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(2, 8, 25, 0.5);
+}
+
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button:hover,
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button:focus-visible {
+  border-color: var(--fe1-yellow);
+  background: var(--fe1-yellow);
+  color: var(--fe1-deep);
+}
+
+/* --- Movimiento reducido ------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* --- Celular ------------------------------------------------------------- */
@@ -238,13 +582,15 @@ a:hover {
     padding-top: 1.2rem;
   }
 
-  .fe1-hero {
-    padding: 1.5rem 1.2rem;
+  .fe1-hero,
+  .fe1-hero--inicio {
+    padding: 1.6rem 1.2rem;
     border-radius: var(--fe1-radio);
   }
 
-  .fe1-hero h1 {
-    font-size: 1.75rem;
+  .fe1-hero h1,
+  .fe1-hero--inicio h1 {
+    font-size: 1.8rem;
   }
 
   .fe1-hero p {
@@ -252,6 +598,13 @@ a:hover {
   }
 
   [data-testid="stMetricValue"] {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
+  }
+
+  [class*="st-key-mapa_"] [class*="st-key-marcador_"] button {
+    padding: 0.35rem 0.55rem;
+    border-width: 1.5px;
+    font-size: 0.75rem;
+    box-shadow: 0 4px 10px rgba(2, 8, 25, 0.5);
   }
 }

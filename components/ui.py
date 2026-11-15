@@ -5,6 +5,7 @@ Dueño: Frontend.
 
 from __future__ import annotations
 
+from html import escape
 from pathlib import Path
 
 import streamlit as st
@@ -27,10 +28,25 @@ def aplicar_estilos() -> None:
     )
 
 
-def encabezado(titulo: str, descripcion: str) -> None:
-    """Título de zona con una frase de contexto."""
+def encabezado(
+    titulo: str,
+    descripcion: str,
+    *,
+    variante: str = "",
+    grande: bool = False,
+) -> None:
+    """Título de sección con una frase de contexto.
+
+    `variante` elige el cielo del encabezado (luna, marte, espacio-profundo,
+    vivo, quiz, fuentes o inicio). `grande` deja el formato de portada; sin él
+    se usa el formato compacto de las páginas internas.
+    """
+    clases = ["fe1-hero", "fe1-hero--inicio" if grande else "fe1-hero--pequeno"]
+    if variante:
+        clases.append(f"fe1-hero--{variante}")
+
     st.markdown(
-        f'<div class="fe1-hero fe1-hero--pequeno"><h1>{titulo}</h1>'
-        f"<p>{descripcion}</p></div>",
+        f'<div class="{" ".join(clases)}"><h1>{escape(titulo)}</h1>'
+        f"<p>{escape(descripcion)}</p></div>",
         unsafe_allow_html=True,
     )
