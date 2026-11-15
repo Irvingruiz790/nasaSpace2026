@@ -24,6 +24,7 @@ FONDOS = (
     "marte_viking1.jpg",
     "espacio_voyager.jpg",
     "vivo_apollo8.jpg",
+    "inicio_tres_mundos.jpg",
 )
 
 
@@ -78,7 +79,7 @@ def test_el_css_reserva_espacio_para_la_barra_superior(css: str) -> None:
     assert "padding-top: 4.75rem" in css
 
 
-def test_el_css_usa_fotos_reales_en_los_cuatro_encabezados(css: str) -> None:
+def test_el_css_usa_fotos_reales_en_los_cinco_encabezados(css: str) -> None:
     for fondo in FONDOS:
         assert f"/app/static/img/encabezados/{fondo}" in css
 
@@ -96,6 +97,29 @@ def test_el_css_tiene_foco_visible_y_movimiento_reducido(css: str) -> None:
     assert ":focus-visible" in css
     assert "prefers-reduced-motion" in css
     assert "min-height: 2.7rem" in css
+
+
+def test_el_aviso_de_enlace_copiado_es_legible(css: str) -> None:
+    # El aviso flota sobre el contenido: fondo Deep Blue, texto blanco y
+    # borde del amarillo oficial para que se vea sin depender del tema.
+    assert ".fe1-aviso-ancla" in css
+    assert "position: fixed" in css
+    assert "var(--fe1-deep)" in css
+    assert "var(--fe1-white)" in css
+
+
+def test_los_botones_de_regreso_usan_iconos_locales() -> None:
+    paginas = [
+        RAIZ / "pages" / "4_En_vivo.py",
+        RAIZ / "pages" / "5_Quiz.py",
+        RAIZ / "pages" / "6_Fuentes.py",
+        RAIZ / "pages" / "7_Ficha.py",
+        RAIZ / "components" / "zonas.py",
+    ]
+    texto = "\n".join(pagina.read_text(encoding="utf-8") for pagina in paginas)
+    assert 'icon=":material/keyboard_double_arrow_left:"' in texto
+    assert 'icon=":material/arrow_back:"' in texto
+    assert "🏠" not in texto
 
 
 def test_el_css_trae_los_encabezados_tematicos(css: str) -> None:

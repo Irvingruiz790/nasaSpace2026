@@ -72,4 +72,4 @@ for pieza in conectadas:
     st.caption(pieza.get("ubicacion_texto", ""))
     st.divider()
 
-st.page_link("app.py", label="Volver al inicio", icon="🏠")
+st.page_link("app.py", label="Volver al inicio", icon=":material/keyboard_double_arrow_left:")

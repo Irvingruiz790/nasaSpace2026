@@ -1373,8 +1373,10 @@ paso(
     "Un solo archivo de CSS con variables de color. Usa la paleta oficial de NASA "
     "Space Apps: fondo Deep Blue, acentos Electric/Neon Blue y Neon Yellow solo "
     "para resaltar. Los títulos van en Orbitron y el texto en Overpass, empaquetadas "
-    "en static/fonts/. Los encabezados de Luna, Marte, espacio profundo y En vivo "
-    "usan fotos reales del NSSDCA (static/img/encabezados/) con su crédito visible. "
+    "en static/fonts/. Los encabezados de Inicio, Luna, Marte, espacio profundo y "
+    "En vivo usan fotos e ilustraciones locales (static/img/encabezados/) con su "
+    "crédito visible cuando se conoce. El símbolo junto a cada título copia el "
+    "enlace de la sección sin mover la página. "
     "Texto mínimo de 16 px, contraste alto, foco visible y alt "
     "text en todas las imágenes.",
     "se lee en un celular sin hacer zoom.",

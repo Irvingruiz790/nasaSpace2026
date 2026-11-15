@@ -350,12 +350,16 @@ code {
 
 .fe1-hero--inicio {
   padding: 3.2rem 2.6rem;
-  background: linear-gradient(45deg, var(--fe1-electric) 0%, #06205a 55%, var(--fe1-deep) 100%);
+  background-color: var(--fe1-deep);
+  background-image:
+    linear-gradient(105deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 23, 63, 0.84) 48%, rgba(7, 23, 63, 0.50) 100%),
+    url("/app/static/img/encabezados/inicio_tres_mundos.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .fe1-hero--inicio::before {
-  opacity: 0.85;
-  background-size: 260px 220px;
+  background-image: none;
 }
 
 .fe1-hero--inicio h1 {
@@ -614,6 +618,33 @@ code {
   color: var(--fe1-deep);
 }
 
+/* --- Aviso al copiar el enlace de un título ------------------------------ */
+
+.fe1-aviso-ancla {
+  position: fixed;
+  left: 50%;
+  bottom: 1.4rem;
+  z-index: 1000000;
+  padding: 0.65rem 1.1rem;
+  border: 1px solid rgba(234, 254, 7, 0.6);
+  border-radius: 999px;
+  background: var(--fe1-deep);
+  color: var(--fe1-white);
+  font-family: var(--fe1-fuente-texto);
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 10px 26px rgba(2, 8, 25, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 0.6rem);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.fe1-aviso-ancla--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 /* --- Movimiento reducido ------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -689,6 +720,12 @@ code {
     background-image:
       linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 38, 92, 0.78) 70%, rgba(7, 38, 92, 0.52) 100%),
       url("/app/static/img/encabezados/vivo_apollo8.jpg");
+  }
+
+  .fe1-hero--inicio {
+    background-image:
+      linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 23, 63, 0.82) 70%, rgba(7, 23, 63, 0.58) 100%),
+      url("/app/static/img/encabezados/inicio_tres_mundos.jpg");
   }
 
   [data-testid="stMetricValue"] {

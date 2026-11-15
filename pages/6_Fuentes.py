@@ -68,4 +68,4 @@ st.subheader("Enlaces oficiales del proyecto")
 for titulo, url in ENLACES_OFICIALES:
     st.markdown(f"- [{titulo}]({url})")
 
-st.page_link("app.py", label="Volver al inicio", icon="🏠")
+st.page_link("app.py", label="Volver al inicio", icon=":material/keyboard_double_arrow_left:")

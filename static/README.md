@@ -15,13 +15,15 @@ fuentes tipográficas viven aquí y no en `assets/`: desde `assets/` darían 404
 | `fonts/overpass-latin.woff2` | Overpass, texto corrido | SIL Open Font License 1.1 |
 | `fonts/OFL-Orbitron.txt` | Licencia de Orbitron | — |
 | `fonts/OFL-Overpass.txt` | Licencia de Overpass | — |
-| `img/encabezados/` | Fondos fotográficos de los encabezados (1200 × 675) | Dominio público NASA |
+| `img/encabezados/` | Fondos fotográficos de los encabezados (1200 × 675) | Dominio público NASA y una imagen aportada por el equipo |
 
-Los cuatro fondos salen del archivo de imágenes del NSSDCA y se recortaron a
-1200 × 675 px para que pesen menos de 300 KB:
+Los cinco fondos se recortaron a 1200 × 675 px para que pesen menos de
+300 KB. La portada es una ilustración de Marte, la Luna y la Tierra aportada
+por el equipo; las otras cuatro salen del archivo de imágenes del NSSDCA:
 
 | Archivo | Foto | Crédito |
 |---|---|---|
+| `img/encabezados/inicio_tres_mundos.jpg` | Marte, la Luna y la Tierra en una sola escena | Aportada por el equipo; crédito pendiente de confirmar |
 | `img/encabezados/luna_apollo17.jpg` | Harrison Schmitt junto a la roca Boulder, Apollo 17 | NASA, 1972 |
 | `img/encabezados/marte_viking1.jpg` | Panorama del Viking 1 Lander en Marte | NASA/JPL, 1976 |
 | `img/encabezados/espacio_voyager.jpg` | Sonda Voyager | NASA/JPL |

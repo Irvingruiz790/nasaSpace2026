@@ -26,6 +26,9 @@
 | 2026-11-15 | El menú lateral sube a 1.5 rem el rótulo «MENÚ» y a 1.08 rem los enlaces | FE | Menú actual de 0.8 rem | El menú se leía muy pequeño en el celular y en el proyector del pitch |
 | 2026-11-15 | `client.toolbarMode = "minimal"`: la app no ofrece fondo claro/oscuro | FE + BE | Ocultar el menú solo con CSS | La identidad es oscura por diseño; `minimal` quita el menú de desarrollador y el selector de tema sin romper el botón de la barra lateral |
 | 2026-11-15 | `.block-container` reserva 4.75 rem arriba (60 px del header + 1 rem) en escritorio y celular | FE | Bajar el `z-index` del header; ocultar el header | El header de Streamlit es absoluto y tapaba el borde superior del hero y la etiqueta de estado de la ficha |
+| 2026-11-15 | El encabezado de inicio usa la ilustración de Marte, la Luna y la Tierra que aportó el equipo (`inicio_tres_mundos.jpg`), con el mismo recorte 1200 × 675 y el mismo degradado que los demás héroes | FE | Patrón de estrellas CSS; foto del NSSDCA | El usuario pidió cambiar la portada por esa imagen; los tres mundos resumen el recorrido de la app y el degradado mantiene el texto en AA |
+| 2026-11-15 | El enlace junto a cada título copia la dirección completa y no navega: el clic se intercepta con JavaScript propio y muestra un aviso «Enlace copiado» | FE | Dejar el ancla nativa de Streamlit; ocultar el símbolo | Streamlit 1.67 solo enlaza al hash y provoca un salto; el equipo necesita compartir la sección sin perder la posición. Sin librerías ni red |
+| 2026-11-15 | Los botones de regreso usan iconos Material locales: `arrow_back` para «Volver a…» y `keyboard_double_arrow_left` para «Volver al inicio» | FE | Emojis 🏠 y de zona; flechas tipográficas | Los emojis cambian de forma según el sistema; los iconos vienen empaquetados con Streamlit y se leen igual en todos los equipos |
 
 ---
 

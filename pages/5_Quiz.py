@@ -93,4 +93,4 @@ if st.button("Revisar respuestas", type="primary"):
         st.balloons()
 
 st.divider()
-st.page_link("app.py", label="Volver al inicio", icon="🏠")
+st.page_link("app.py", label="Volver al inicio", icon=":material/keyboard_double_arrow_left:")
