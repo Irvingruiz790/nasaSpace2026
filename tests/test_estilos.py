@@ -108,6 +108,15 @@ def test_el_aviso_de_enlace_copiado_es_legible(css: str) -> None:
     assert "var(--fe1-white)" in css
 
 
+def test_las_metricas_muestran_el_texto_completo(css: str) -> None:
+    # Streamlit recorta con puntos suspensivos; «25 893 millones de km» y
+    # «23 horas 59 minutos» deben poder bajar a dos líneas.
+    assert '[data-testid="stMetricValue"] [data-testid="stMarkdownContainer"]' in css
+    assert '[data-testid="stMetricLabel"] [data-testid="stMarkdownContainer"]' in css
+    assert "white-space: normal" in css
+    assert "text-overflow: clip" in css
+
+
 def test_los_botones_de_regreso_usan_iconos_locales() -> None:
     paginas = [
         RAIZ / "pages" / "4_En_vivo.py",

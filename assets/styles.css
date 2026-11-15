@@ -526,6 +526,24 @@ code {
   color: var(--fe1-texto-tenue);
 }
 
+/* Streamlit recorta etiquetas y valores de las métricas con puntos
+   suspensivos. Los datos en vivo son largos («25 893 millones de km»,
+   «23 horas 59 minutos»), así que se permite bajar a dos líneas en vez de
+   perder el final. */
+[data-testid="stMetricLabel"] [data-testid="stMarkdownContainer"],
+[data-testid="stMetricValue"] [data-testid="stMarkdownContainer"] {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
+}
+
+[data-testid="stMetricValue"] p {
+  white-space: normal;
+  margin: 0;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+
 /* --- Contenedores con borde (tarjetas) ----------------------------------- */
 
 [data-testid="stVerticalBlockBorderWrapper"] {
