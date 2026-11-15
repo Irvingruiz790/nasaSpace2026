@@ -229,6 +229,69 @@ a:hover {
   background: var(--fe1-blanco);
 }
 
+/* --- Mapas con marcadores ------------------------------------------------ */
+
+/* El contenedor del mapa es la referencia de las coordenadas. Sin separación
+   interna, para que la capa de marcadores mida exactamente lo mismo que la
+   imagen de fondo. */
+[class*="st-key-mapa_"] {
+  position: relative;
+  gap: 0;
+}
+
+[class*="st-key-mapa_"] [data-testid="stImage"] {
+  margin: 0;
+}
+
+[class*="st-key-mapa_"] [data-testid="stImage"] img {
+  display: block;
+  width: 100%;
+  border-radius: var(--fe1-radio);
+}
+
+/* Capa transparente que cubre el fondo: los marcadores viven aquí dentro. */
+[class*="st-key-capa_"] {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+[class*="st-key-capa_"] [data-testid="stVerticalBlock"] {
+  gap: 0;
+  height: 100%;
+}
+
+/* Cada marcador se centra en su porcentaje y se sale del flujo normal. */
+[class*="st-key-marcador_"] {
+  position: absolute !important;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  width: auto !important;
+  pointer-events: auto;
+}
+
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button {
+  min-height: 0;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 2px solid var(--fe1-azul);
+  background: var(--fe1-blanco);
+  color: var(--fe1-azul);
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(16, 29, 51, 0.35);
+}
+
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button:hover,
+[class*="st-key-mapa_"] [class*="st-key-marcador_"] button:focus-visible {
+  background: var(--fe1-azul);
+  border-color: var(--fe1-azul);
+  color: var(--fe1-blanco);
+}
+
 /* --- Celular ------------------------------------------------------------- */
 
 @media (max-width: 640px) {
@@ -253,5 +316,12 @@ a:hover {
 
   [data-testid="stMetricValue"] {
     font-size: 1.3rem;
+  }
+
+  [class*="st-key-mapa_"] [class*="st-key-marcador_"] button {
+    padding: 0.35rem 0.55rem;
+    border-width: 1.5px;
+    font-size: 0.75rem;
+    box-shadow: 0 4px 10px rgba(16, 29, 51, 0.35);
   }
 }
