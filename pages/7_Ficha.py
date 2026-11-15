@@ -16,9 +16,9 @@ from core import datos, formato, vivo
 RAIZ = Path(__file__).resolve().parent.parent
 
 ZONA_A_PAGINA = {
-    "luna": ("pages/1_Luna.py", "La Luna", "🌕"),
-    "marte": ("pages/2_Marte.py", "Marte", "🔴"),
-    "espacio_profundo": ("pages/3_Espacio_profundo.py", "Espacio profundo", "🌌"),
+    "luna": ("pages/1_Luna.py", "La Luna"),
+    "marte": ("pages/2_Marte.py", "Marte"),
+    "espacio_profundo": ("pages/3_Espacio_profundo.py", "Espacio profundo"),
 }
 
 BLOQUES = [
@@ -52,12 +52,12 @@ if pieza is None:
         st.page_link("pages/2_Marte.py", label="Marte", icon="🔴")
     with columnas[2]:
         st.page_link("pages/3_Espacio_profundo.py", label="Espacio profundo", icon="🌌")
-    st.page_link("app.py", label="Volver al inicio", icon="🏠")
+    st.page_link("app.py", label="Volver al inicio", icon=":material/keyboard_double_arrow_left:")
     st.stop()
 
 zona = pieza.get("zona", "")
-pagina_zona, nombre_zona, icono_zona = ZONA_A_PAGINA.get(
-    zona, ("app.py", "Inicio", "🏠")
+pagina_zona, nombre_zona = ZONA_A_PAGINA.get(
+    zona, ("app.py", "Inicio")
 )
 
 with st.container():
@@ -115,11 +115,12 @@ with resumen:
 st.divider()
 
 historia = pieza.get("historia") or {}
-for clave, titulo in BLOQUES:
-    texto = historia.get(clave)
-    if texto:
-        st.subheader(titulo)
-        st.write(texto)
+with st.container(key="historia_ficha"):
+    for clave, titulo in BLOQUES:
+        texto = historia.get(clave)
+        if texto:
+            st.subheader(titulo)
+            st.write(texto)
 
 st.divider()
 
@@ -141,5 +142,9 @@ st.caption(
 )
 
 st.divider()
-st.page_link(pagina_zona, label=f"Volver a {nombre_zona}", icon=icono_zona)
-st.page_link("app.py", label="Volver al inicio", icon="🏠")
+st.page_link(
+    pagina_zona,
+    label=f"Volver a {nombre_zona}",
+    icon=":material/arrow_back:",
+)
+st.page_link("app.py", label="Volver al inicio", icon=":material/keyboard_double_arrow_left:")

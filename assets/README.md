@@ -15,11 +15,15 @@ Aquí no hay código Python: solo archivos que la app muestra tal cual.
 
 ## Tipografía
 
-`styles.css` declara `@font-face` para **Exo 2** (títulos) y **Overpass**
+`styles.css` declara `@font-face` para **Orbitron** (títulos) y **Overpass**
 (texto). Los archivos no viven aquí: Streamlit solo sirve la carpeta `static/`
 del proyecto, así que las fuentes y sus licencias OFL están en
 [`static/fonts/`](../static/README.md). La app no pide ninguna fuente a
 internet.
+
+Los fondos fotográficos de los encabezados también viven en `static/img/`
+porque la CSS los pide al navegador; sus créditos están en
+[`static/README.md`](../static/README.md).
 
 ## Reglas
 
@@ -27,6 +31,8 @@ internet.
   sin acentos, sin «foto final (2).jpg».
 - Las fotos de `img/` pesan **menos de 300 KB**, son **horizontales** y miden
   unos **1200 px de ancho**.
+- Los fondos de `static/img/encabezados/` miden **1200 × 675 px** y pesan
+  **menos de 300 KB**.
 - Los fondos de `maps/` pesan **menos de 300 KB** y miden unos **1600 px de
   ancho**.
 - Toda imagen necesita crédito y `alt_text` en `contenido/fichas.csv`.

@@ -1,96 +1,97 @@
-"""Quiz de tres preguntas. Dueño: Frontend.
-
-Las preguntas se arman con las piezas reales del dataset: si investigación
-agrega una pieza, el quiz la puede usar sin tocar el código.
-"""
-
-from __future__ import annotations
-
-from typing import Any
+"""Quiz de 30 preguntas, una por pantalla, con fuentes del dataset."""
 
 import streamlit as st
 
 from components.ui import aplicar_estilos, encabezado
-from core import datos
+from core import datos, quiz
 
-NOMBRES_ZONA = {
-    "luna": "La Luna",
-    "marte": "Marte",
-    "espacio_profundo": "El espacio profundo",
-    "orbita": "La órbita de la Tierra",
-    "asteroide": "Un asteroide",
-}
-
-st.set_page_config(
-    page_title="Quiz — ¿Dónde está ahora?",
-    page_icon="🧠",
-    layout="wide",
-)
+st.set_page_config(page_title="Quiz — ¿Dónde está ahora?", page_icon="🧠", layout="wide")
 aplicar_estilos()
 encabezado(
     "Quiz",
-    "Tres preguntas rápidas para ver si estuviste poniendo atención. "
-    "Puedes intentarlo todas las veces que quieras.",
+    "Pon a prueba tu curiosidad con 30 preguntas sobre las máquinas exploradoras.",
     variante="quiz",
 )
 
-
-def construir_preguntas(piezas: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Una pregunta de zona por cada una de las tres primeras piezas."""
-    preguntas: list[dict[str, Any]] = []
-    opciones = list(dict.fromkeys(NOMBRES_ZONA.values()))
-
-    for pieza in piezas[:3]:
-        preguntas.append(
-            {
-                "pregunta": f"¿Dónde está {pieza.get('nombre', 'esta pieza')}?",
-                "opciones": opciones,
-                "correcta": NOMBRES_ZONA.get(pieza.get("zona", ""), ""),
-            }
-        )
-    return preguntas
-
-
-piezas = datos.cargar_piezas()
-preguntas = construir_preguntas(piezas)
-
-if not preguntas:
-    st.info(
-        "Todavía no hay piezas para armar el quiz. Backend debe generar "
-        "`data/artifacts.json`."
-    )
+preguntas = quiz.construir_preguntas(datos.cargar_piezas())
+if len(preguntas) != 30:
+    st.info("Necesitamos las 10 fichas y sus fuentes para preparar las 30 preguntas.")
     st.stop()
 
-respuestas: list[str | None] = []
+st.session_state.setdefault("quiz_mejor", 0)
 
-for numero, pregunta in enumerate(preguntas, start=1):
-    st.markdown(f"**{numero}. {pregunta['pregunta']}**")
-    respuestas.append(
-        st.radio(
-            "Elige una opción",
-            pregunta["opciones"],
-            index=None,
-            key=f"quiz_{numero}",
-            label_visibility="collapsed",
-        )
-    )
 
-if st.button("Revisar respuestas", type="primary"):
-    aciertos = 0
-    for numero, (pregunta, respuesta) in enumerate(zip(preguntas, respuestas), start=1):
-        if respuesta is None:
-            st.warning(f"Pregunta {numero}: te faltó responder.")
-        elif respuesta == pregunta["correcta"]:
-            aciertos += 1
-            st.success(f"Pregunta {numero}: ¡correcto! Es {pregunta['correcta']}.")
-        else:
-            st.error(
-                f"Pregunta {numero}: era {pregunta['correcta']}, no «{respuesta}»."
+def iniciar():
+    st.session_state["quiz_partida"] = quiz.nueva_partida(preguntas)
+
+
+def elegir(partida_id, indice, respuesta):
+    partida = st.session_state.get("quiz_partida")
+    if partida and quiz.responder(partida, partida_id, indice, respuesta):
+        if len(partida["respuestas"]) == len(partida["preguntas"]):
+            st.session_state["quiz_mejor"] = max(
+                st.session_state["quiz_mejor"], partida["aciertos"]
             )
 
-    st.metric("Aciertos", f"{aciertos} de {len(preguntas)}")
-    if aciertos == len(preguntas):
-        st.balloons()
 
-st.divider()
-st.page_link("app.py", label="Volver al inicio", icon="🏠")
+def menu():
+    st.session_state.pop("quiz_partida", None)
+
+
+partida = st.session_state.get("quiz_partida")
+if partida is None:
+    with st.container(key="quiz_inicio"):
+        st.html('<div class="fe3-insignia" aria-hidden="true">✦</div>')
+        st.subheader("¿Estás listo?")
+        st.metric("Mejor puntuación de esta sesión", f"{st.session_state['quiz_mejor']} / 30")
+        st.write("30 preguntas · 1 punto por acierto · Sin límite de tiempo")
+        st.write(
+            "Elige una respuesta y pasarás a la siguiente pregunta. "
+            "Al terminar podrás revisar las respuestas y sus fuentes."
+        )
+        st.button("Iniciar quiz", key="quiz_iniciar", type="primary", on_click=iniciar)
+        st.caption("Cada partida mezcla las preguntas y las opciones. Tu récord dura esta sesión.")
+elif len(partida["respuestas"]) < len(partida["preguntas"]):
+    indice = len(partida["respuestas"])
+    pregunta = partida["preguntas"][indice]
+    st.progress(indice / 30, text=f"Pregunta {indice + 1} de 30")
+    if indice:
+        anterior = partida["preguntas"][indice - 1]
+        if partida["respuestas"][-1] == anterior["correcta"]:
+            st.success("¡Respuesta anterior correcta!")
+        else:
+            st.info(f"Respuesta anterior: {anterior['correcta']}")
+    with st.container(key="quiz_pregunta"):
+        st.subheader(pregunta["pregunta"], anchor=False)
+        st.caption("Elige una respuesta. Avanzarás automáticamente.")
+        columnas = st.columns(2)
+        for numero, opcion in enumerate(pregunta["opciones"]):
+            with columnas[numero % 2]:
+                st.button(
+                    f"{'ABCD'[numero]}. {opcion}",
+                    key=f"quiz_opcion_{partida['id']}_{indice}_{numero}",
+                    width="stretch",
+                    on_click=elegir,
+                    args=(partida["id"], indice, opcion),
+                )
+    st.caption(f"Aciertos: {partida['aciertos']} · Puedes salir y volver durante esta sesión.")
+else:
+    st.subheader("¡Misión completada!")
+    izquierda, derecha = st.columns(2)
+    izquierda.metric("Tu puntuación", f"{partida['aciertos']} / 30")
+    derecha.metric("Mejor puntuación de esta sesión", f"{st.session_state['quiz_mejor']} / 30")
+    st.write("Cada intento es una oportunidad para descubrir algo nuevo.")
+    st.button("Volver al menú", key="quiz_menu", on_click=menu, type="primary")
+    with st.expander("Revisa tus respuestas y las fuentes"):
+        for numero, (pregunta, respuesta) in enumerate(
+            zip(partida["preguntas"], partida["respuestas"]), start=1
+        ):
+            st.markdown(f"**{numero}. {pregunta['pregunta']}**")
+            st.write(f"Tu respuesta: {respuesta}")
+            st.write(f"Respuesta correcta: {pregunta['correcta']}")
+            st.write(pregunta["explicacion"])
+            for fuente in pregunta["fuentes"]:
+                st.markdown(f"[{fuente['titulo']}]({fuente['url']})")
+            st.divider()
+
+st.page_link("app.py", label="Volver al inicio", icon=":material/keyboard_double_arrow_left:")

@@ -34,7 +34,7 @@ def pagina_zona(zona: str, titulo: str, descripcion: str, icono: str) -> None:
 
     if not piezas:
         st.info(SIN_PIEZAS)
-        st.page_link("app.py", label="Volver al inicio", icon="🏠")
+        st.page_link("app.py", label="Volver al inicio", icon=":material/keyboard_double_arrow_left:")
         return
 
     mapa_zona(zona, piezas, datos.cargar_posiciones())

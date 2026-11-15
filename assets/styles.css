@@ -9,14 +9,14 @@
      oscuro: Deep Blue de fondo, Electric/Neon Blue en bloques y Neon Yellow
      solo como acento (60-30-10). El amarillo nunca es fondo de lectura.
    - Texto mínimo 16 px. Contraste AA. Foco visible. Celular de 390 px.
-   - Nada de fuentes por CDN: Exo 2 y Overpass viajan en `static/fonts/` y se
-     sirven desde `/app/static/...` con `server.enableStaticServing`.
+   - Nada de fuentes por CDN: Orbitron y Overpass viajan en `static/fonts/` y
+     se sirven desde `/app/static/...` con `server.enableStaticServing`.
    ========================================================================== */
 
 @font-face {
-  font-family: "Exo 2";
-  src: url("/app/static/fonts/exo2-latin.woff2") format("woff2");
-  font-weight: 100 900;
+  font-family: "Orbitron";
+  src: url("/app/static/fonts/orbitron-latin.woff2") format("woff2");
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
@@ -54,7 +54,7 @@
   --fe1-radio: 18px;
   --fe1-radio-grande: 26px;
   --fe1-sombra: 0 18px 40px rgba(2, 8, 25, 0.45);
-  --fe1-fuente-titulos: "Exo 2", "Segoe UI", system-ui, sans-serif;
+  --fe1-fuente-titulos: "Orbitron", "Segoe UI", system-ui, sans-serif;
   --fe1-fuente-texto: "Overpass", "Segoe UI", system-ui, sans-serif;
   --fe1-gradiente: linear-gradient(45deg, var(--fe1-electric) 0%, var(--fe1-deep) 100%);
 
@@ -87,7 +87,9 @@ body,
 }
 
 .block-container {
-  padding-top: 2.2rem;
+  /* La barra superior de Streamlit mide 60 px y es `position: absolute`:
+     sin este colchón, el encabezado y la etiqueta de la ficha quedan debajo. */
+  padding-top: 4.75rem;
   padding-bottom: 4rem;
   max-width: 1150px;
 }
@@ -99,9 +101,17 @@ h4,
 h5,
 h6 {
   font-family: var(--fe1-fuente-titulos);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--fe1-texto);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.005em;
+}
+
+/* `st.title` trae 2.75 rem: con Orbitron, un nombre largo de ficha se parte
+   en cuatro líneas en el celular. */
+[data-testid="stHeading"] h1 {
+  font-size: 2.1rem;
+  line-height: 1.22;
+  letter-spacing: 0.01em;
 }
 
 p,
@@ -143,6 +153,13 @@ code {
   border-radius: 6px;
 }
 
+/* El menú ⋮ de Streamlit incluye el selector de fondo claro/oscuro. La app es
+   oscura por diseño: `client.toolbarMode = "minimal"` ya lo oculta y esta regla
+   cubre el caso de una instancia que lo vuelva a mostrar. */
+[data-testid="stMainMenu"] {
+  display: none;
+}
+
 /* --- Barra lateral ------------------------------------------------------- */
 
 [data-testid="stSidebar"] {
@@ -153,18 +170,29 @@ code {
 [data-testid="stSidebarNav"]::before {
   content: "Menú";
   display: block;
-  margin: 0.2rem 0 0.9rem 0.65rem;
+  margin: 0.35rem 0 1rem 0.6rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid rgba(234, 254, 7, 0.5);
   font-family: var(--fe1-fuente-titulos);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fe1-yellow);
+  text-shadow: 0 0 18px rgba(234, 254, 7, 0.35);
 }
 
 [data-testid="stSidebarNavLink"] {
+  min-height: 2.9rem;
+  padding: 0.45rem 0.6rem;
   border-radius: 12px;
   transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+[data-testid="stSidebarNavLink"] [data-testid="stMarkdownContainer"] p {
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 [data-testid="stSidebarNavLink"]:hover {
@@ -189,7 +217,7 @@ code {
 
 [data-testid="stSidebarNavLink"][href$="/"] [data-testid="stMarkdownContainer"] p::after {
   content: "Inicio";
-  font-size: 1rem;
+  font-size: 1.08rem;
 }
 
 /* --- Encabezado (hero) --------------------------------------------------- */
@@ -220,18 +248,30 @@ code {
 
 .fe1-hero h1 {
   margin: 0 0 0.6rem 0;
-  font-size: 2.5rem;
-  line-height: 1.12;
+  font-size: 2.2rem;
+  line-height: 1.16;
+  letter-spacing: 0.01em;
   color: var(--fe1-white);
   text-shadow: 0 2px 18px rgba(2, 8, 25, 0.55);
 }
 
 .fe1-hero p {
   margin: 0;
-  max-width: 62ch;
+  max-width: 50ch;
   font-size: 1.08rem;
   line-height: 1.6;
   color: #dbe6ff;
+}
+
+.fe1-hero__credito {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--fe1-fuente-texto);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(234, 240, 255, 0.88);
 }
 
 .fe1-hero--pequeno {
@@ -240,43 +280,57 @@ code {
 }
 
 .fe1-hero--pequeno h1 {
-  font-size: 1.9rem;
+  font-size: 1.7rem;
 }
 
-/* Encabezados temáticos: mismo hero, distinto cielo. */
+/* Encabezados temáticos: mismo hero, distinto cielo. Cuatro de ellos usan
+   fotos reales de NSSDCA; la capa oscura de la izquierda mantiene el texto
+   legible (AA) y deja ver la imagen a la derecha. */
 .fe1-hero--luna {
-  background:
-    radial-gradient(circle at 82% 26%, rgba(190, 205, 235, 0.35) 0%, transparent 46%),
-    linear-gradient(135deg, #1b2f5c 0%, #0a1c42 55%, var(--fe1-deep) 100%);
+  background-color: #1b2f5c;
+  background-image:
+    linear-gradient(105deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 23, 63, 0.86) 48%, rgba(7, 23, 63, 0.50) 100%),
+    url("/app/static/img/encabezados/luna_apollo17.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .fe1-hero--marte {
-  background:
-    radial-gradient(circle at 84% 22%, rgba(228, 55, 0, 0.55) 0%, transparent 48%),
-    linear-gradient(135deg, #6e1508 0%, #2a0b14 55%, var(--fe1-deep) 100%);
+  background-color: #6e1508;
+  background-image:
+    linear-gradient(105deg, rgba(7, 23, 63, 0.94) 0%, rgba(40, 10, 14, 0.86) 48%, rgba(40, 10, 14, 0.50) 100%),
+    url("/app/static/img/encabezados/marte_viking1.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .fe1-hero--espacio-profundo {
-  background:
-    radial-gradient(circle at 18% 18%, rgba(9, 96, 225, 0.5) 0%, transparent 45%),
-    linear-gradient(135deg, #041033 0%, var(--fe1-deep) 60%, #02081b 100%);
+  background-color: #041033;
+  background-image:
+    linear-gradient(105deg, rgba(4, 16, 51, 0.94) 0%, rgba(4, 16, 51, 0.86) 48%, rgba(4, 16, 51, 0.50) 100%),
+    url("/app/static/img/encabezados/espacio_voyager.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.fe1-hero--luna::before,
+.fe1-hero--marte::before,
+.fe1-hero--vivo::before {
+  background-image: none;
 }
 
 .fe1-hero--espacio-profundo::before {
-  opacity: 0.95;
+  opacity: 0.55;
   background-size: 190px 160px;
 }
 
 .fe1-hero--vivo {
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(46, 150, 245, 0.07) 0px,
-      rgba(46, 150, 245, 0.07) 1px,
-      transparent 1px,
-      transparent 7px
-    ),
-    linear-gradient(115deg, var(--fe1-electric) 0%, #07265c 45%, var(--fe1-deep) 100%);
+  background-color: var(--fe1-electric);
+  background-image:
+    linear-gradient(105deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 38, 92, 0.86) 48%, rgba(7, 38, 92, 0.50) 100%),
+    url("/app/static/img/encabezados/vivo_apollo8.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .fe1-hero--quiz {
@@ -296,16 +350,20 @@ code {
 
 .fe1-hero--inicio {
   padding: 3.2rem 2.6rem;
-  background: linear-gradient(45deg, var(--fe1-electric) 0%, #06205a 55%, var(--fe1-deep) 100%);
+  background-color: var(--fe1-deep);
+  background-image:
+    linear-gradient(105deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 23, 63, 0.84) 48%, rgba(7, 23, 63, 0.50) 100%),
+    url("/app/static/img/encabezados/inicio_tres_mundos.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .fe1-hero--inicio::before {
-  opacity: 0.85;
-  background-size: 260px 220px;
+  background-image: none;
 }
 
 .fe1-hero--inicio h1 {
-  font-size: 3rem;
+  font-size: 2.7rem;
 }
 
 /* --- Etiqueta de estado -------------------------------------------------- */
@@ -448,6 +506,147 @@ code {
 }
 
 /* --- Métricas ------------------------------------------------------------ */
+/* Selector solar: los destinos son botones nativos (teclado y pantalla táctil). */
+.st-key-sistema_solar {
+  position: relative;
+  min-height: 340px;
+  border: 1px solid var(--fe1-borde);
+  border-radius: var(--fe1-radio);
+  background:
+    linear-gradient(100deg, rgba(3, 12, 36, 0.94), rgba(7, 23, 63, 0.78)),
+    url("/app/static/img/sistema_solar/nebulosa_orion.jpg") center / cover;
+  isolation: isolate;
+}
+.fe2-orbitas {
+  position: relative;
+  height: 338px;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: var(--fe1-radio);
+  background-image: var(--fe1-estrellas);
+}
+.fe2-orbitas::before {
+  content: "";
+  position: absolute;
+  width: 65%;
+  height: 220px;
+  top: 45px;
+  left: -20%;
+  border: 1px solid #93a7ce88;
+  border-radius: 50%;
+  box-shadow: 0 0 0 55px #93a7ce0a, 0 0 0 110px #93a7ce08;
+}
+.fe2-sol, .fe2-tierra {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+}
+.fe2-sol {
+  left: -25px;
+  top: 110px;
+  width: 100px;
+  height: 100px;
+  color: #07173f;
+  background: radial-gradient(circle at 30% 30%, #fff2a0, #ffac25 65%, #e43700);
+  box-shadow: 0 0 35px #ffac2566;
+}
+.fe2-tierra {
+  left: 22%;
+  top: 210px;
+  width: 65px;
+  height: 65px;
+  font-size: 0.85rem;
+  color: white;
+  background: radial-gradient(circle at 30% 25%, #2e96f5, #0042a6 40%, #07173f 80%);
+}
+.st-key-sistema_solar .st-key-destino_luna,
+.st-key-sistema_solar .st-key-destino_marte,
+.st-key-sistema_solar .st-key-destino_profundo {
+  position: absolute;
+  width: 26%;
+  top: 65px;
+}
+.st-key-sistema_solar .st-key-destino_luna { left: 15%; }
+.st-key-sistema_solar .st-key-destino_marte { left: 44%; top: 150px; }
+.st-key-sistema_solar .st-key-destino_profundo { left: 72%; top: 45px; }
+.st-key-sistema_solar button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.6rem 0.2rem;
+  background: #07173fcc;
+  color: white;
+  min-height: 130px;
+  white-space: normal;
+}
+.st-key-sistema_solar button::before {
+  content: "";
+  width: clamp(65px, 9vw, 110px);
+  height: clamp(65px, 9vw, 110px);
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: url("/app/static/img/sistema_solar/luna_galileo.jpg") center / auto 100%;
+  box-shadow: inset -14px -5px 20px #0009, 0 0 20px #b9c8e82a;
+  transition: transform 160ms ease;
+}
+.st-key-destino_marte button::before {
+  background: url("/app/static/img/sistema_solar/marte_viking.jpg") center / auto 100%;
+  box-shadow: inset -14px -5px 20px #0009, 0 0 25px #e4370033;
+}
+.st-key-destino_profundo button::before {
+  background: url("/app/static/img/sistema_solar/nebulosa_orion.jpg") center / cover;
+  border-radius: 25%;
+  box-shadow: 0 0 20px #2e96f555;
+}
+.st-key-sistema_solar button:hover::before,
+.st-key-sistema_solar button:focus-visible::before { transform: scale(1.08); }
+
+/* Amarillo oficial con texto Deep Blue: mantiene contraste al seleccionar. */
+[class*="st-key-ver_"] button:hover,
+[class*="st-key-ver_"] button:focus-visible,
+[class*="st-key-quiz_opcion_"] button:hover,
+[class*="st-key-quiz_opcion_"] button:focus-visible {
+  background: var(--fe1-yellow);
+  border-color: var(--fe1-yellow);
+  color: var(--fe1-deep);
+}
+[class*="st-key-ver_"] button:hover p,
+[class*="st-key-ver_"] button:focus-visible p,
+[class*="st-key-quiz_opcion_"] button:hover p,
+[class*="st-key-quiz_opcion_"] button:focus-visible p {
+  color: var(--fe1-deep);
+}
+.st-key-historia_ficha,
+.st-key-quiz_inicio,
+.st-key-quiz_pregunta {
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 2px solid var(--fe1-yellow);
+  border-radius: var(--fe1-radio);
+  background: linear-gradient(145deg, #0a2258, #07173f);
+  box-shadow: 0 0 22px #eafe0714;
+}
+.st-key-historia_ficha [data-testid="stHeading"] h3 {
+  color: var(--fe1-yellow);
+}
+.fe3-insignia {
+  font-size: 3rem;
+  color: var(--fe1-yellow);
+  text-shadow: 0 0 25px #eafe0766;
+}
+[class*="st-key-quiz_opcion_"] button {
+  min-height: 100px;
+  border: 2px solid var(--fe1-yonder);
+  background: var(--fe1-electric);
+  color: white;
+  text-align: left;
+}
+[class*="st-key-quiz_opcion_"] button p {
+  font-size: 1.1rem;
+  white-space: normal;
+}
 
 [data-testid="stMetric"] {
   padding: 0.9rem 1rem;
@@ -466,6 +665,24 @@ code {
 [data-testid="stMetricLabel"] {
   font-size: 0.95rem;
   color: var(--fe1-texto-tenue);
+}
+
+/* Streamlit recorta etiquetas y valores de las métricas con puntos
+   suspensivos. Los datos en vivo son largos («25 893 millones de km»,
+   «23 horas 59 minutos»), así que se permite bajar a dos líneas en vez de
+   perder el final. */
+[data-testid="stMetricLabel"] [data-testid="stMarkdownContainer"],
+[data-testid="stMetricValue"] [data-testid="stMarkdownContainer"] {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
+}
+
+[data-testid="stMetricValue"] p {
+  white-space: normal;
+  margin: 0;
+  line-height: 1.15;
+  overflow-wrap: break-word;
 }
 
 /* --- Contenedores con borde (tarjetas) ----------------------------------- */
@@ -560,6 +777,33 @@ code {
   color: var(--fe1-deep);
 }
 
+/* --- Aviso al copiar el enlace de un título ------------------------------ */
+
+.fe1-aviso-ancla {
+  position: fixed;
+  left: 50%;
+  bottom: 1.4rem;
+  z-index: 1000000;
+  padding: 0.65rem 1.1rem;
+  border: 1px solid rgba(234, 254, 7, 0.6);
+  border-radius: 999px;
+  background: var(--fe1-deep);
+  color: var(--fe1-white);
+  font-family: var(--fe1-fuente-texto);
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 10px 26px rgba(2, 8, 25, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 0.6rem);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.fe1-aviso-ancla--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 /* --- Movimiento reducido ------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -579,22 +823,68 @@ code {
   .block-container {
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 1.2rem;
+    /* Mismo colchón que en escritorio: la barra superior sigue midiendo 60 px. */
+    padding-top: 4.75rem;
   }
 
   .fe1-hero,
   .fe1-hero--inicio {
-    padding: 1.6rem 1.2rem;
+    padding: 1.5rem 1.2rem;
     border-radius: var(--fe1-radio);
   }
 
   .fe1-hero h1,
   .fe1-hero--inicio h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    letter-spacing: 0.005em;
   }
 
   .fe1-hero p {
     font-size: 1rem;
+    /* Deja el texto sobre la zona oscura de la foto; la imagen se ve a la
+       derecha y el contraste se mantiene por encima de AA. */
+    max-width: 26ch;
+  }
+
+  .fe1-hero__credito {
+    font-size: 0.72rem;
+  }
+
+  [data-testid="stHeading"] h1 {
+    font-size: 1.7rem;
+  }
+
+  /* En el celular se oscurece más la foto: el texto se queda en la mitad
+     izquierda y la imagen se asoma por la derecha. */
+  .fe1-hero--luna {
+    background-image:
+      linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 23, 63, 0.78) 70%, rgba(7, 23, 63, 0.50) 100%),
+      url("/app/static/img/encabezados/luna_apollo17.jpg");
+  }
+
+  .fe1-hero--marte {
+    background-image:
+      linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(40, 10, 14, 0.78) 70%, rgba(40, 10, 14, 0.55) 100%),
+      url("/app/static/img/encabezados/marte_viking1.jpg");
+  }
+
+  .fe1-hero--espacio-profundo {
+    background-image:
+      linear-gradient(100deg, rgba(4, 16, 51, 0.94) 0%, rgba(4, 16, 51, 0.82) 70%, rgba(4, 16, 51, 0.62) 100%),
+      url("/app/static/img/encabezados/espacio_voyager.jpg");
+  }
+
+  .fe1-hero--vivo {
+    background-image:
+      linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 38, 92, 0.78) 70%, rgba(7, 38, 92, 0.52) 100%),
+      url("/app/static/img/encabezados/vivo_apollo8.jpg");
+  }
+
+  .fe1-hero--inicio {
+    background-image:
+      linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 23, 63, 0.82) 70%, rgba(7, 23, 63, 0.58) 100%),
+      url("/app/static/img/encabezados/inicio_tres_mundos.jpg");
   }
 
   [data-testid="stMetricValue"] {

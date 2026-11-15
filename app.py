@@ -9,6 +9,7 @@ from __future__ import annotations
 import streamlit as st
 
 from components.tarjeta import tarjeta
+from components.sistema_solar import sistema_solar
 from components.ui import aplicar_estilos, encabezado
 from core import datos
 
@@ -44,15 +45,7 @@ columnas[1].metric("En la Luna", zonas["luna"])
 columnas[2].metric("En Marte", zonas["marte"])
 columnas[3].metric("En el espacio profundo", zonas["espacio_profundo"])
 
-st.subheader("Elige una zona")
-
-enlaces = st.columns(3)
-with enlaces[0]:
-    st.page_link("pages/1_Luna.py", label="La Luna", icon="🌕")
-with enlaces[1]:
-    st.page_link("pages/2_Marte.py", label="Marte", icon="🔴")
-with enlaces[2]:
-    st.page_link("pages/3_Espacio_profundo.py", label="Espacio profundo", icon="🌌")
+sistema_solar()
 
 st.subheader("Algunas de las piezas")
 
