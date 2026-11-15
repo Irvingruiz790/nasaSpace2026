@@ -23,9 +23,11 @@ van de 0 a 100, con el origen arriba a la izquierda.
 ```json
 {
   "luna": {
-    "apollo-11-lm": { "x": 34, "y": 44 }
+    "apollo-11-lm": { "x": 63.4, "y": 49.5 }
   },
-  "marte": {},
+  "marte": {
+    "sojourner": { "x": 15.7, "y": 38.2 }
+  },
   "espacio_profundo": {
     "voyager-1": { "x": 66, "y": 32 }
   }
@@ -35,6 +37,24 @@ van de 0 a 100, con el origen arriba a la izquierda.
 - La llave de cada pieza es su `id` del CSV.
 - Si una pieza no aparece en el JSON, se dibuja al centro (`x = 50`).
 - Si una zona no tiene piezas todavía, se deja `{}`.
+- El archivo ya trae las 10 piezas del CSV repartidas en sus tres zonas.
+
+## Fuente de los fondos
+
+Los tres fondos salen del **NSSDCA de la NASA** (`nssdc.gsfc.nasa.gov`):
+
+| Archivo | Imagen original | Tratamiento |
+|---|---|---|
+| `luna.jpg` | `image/planetary/moon/clem_full_moon_strtrk.jpg` (Clementine) | Recorte al disco y lienzo 4:3 |
+| `marte.jpg` | `image/hi-res/planetary/mars/mars_dim.tiff` (Mars Digital Image Model) | Reproyectado de sinusoidal a rectangular, centrado en 90° E |
+| `espacio_profundo.jpg` | `image/hi-res/astro/hst_deep_field.tiff` (Hubble Deep Field) | Recorte a 4:3 |
+
+Las coordenadas de cada pieza son su latitud y longitud reales según las
+fichas del NSSDCA, proyectadas sobre cada fondo:
+
+- **Luna:** proyección ortográfica sobre el disco (0° de longitud en el centro).
+- **Marte:** proyección equirectangular con el meridiano 90° E en el centro.
+- **Espacio profundo:** posición decorativa; la imagen no es un mapa celeste.
 
 ## Reglas
 
