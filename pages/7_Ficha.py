@@ -115,11 +115,12 @@ with resumen:
 st.divider()
 
 historia = pieza.get("historia") or {}
-for clave, titulo in BLOQUES:
-    texto = historia.get(clave)
-    if texto:
-        st.subheader(titulo)
-        st.write(texto)
+with st.container(key="historia_ficha"):
+    for clave, titulo in BLOQUES:
+        texto = historia.get(clave)
+        if texto:
+            st.subheader(titulo)
+            st.write(texto)
 
 st.divider()
 

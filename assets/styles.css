@@ -512,7 +512,9 @@ code {
   min-height: 340px;
   border: 1px solid var(--fe1-borde);
   border-radius: var(--fe1-radio);
-  background: radial-gradient(ellipse at 0% 55%, #623d13 0%, #07173f 35%, #030c24 100%);
+  background:
+    linear-gradient(100deg, rgba(3, 12, 36, 0.94), rgba(7, 23, 63, 0.78)),
+    url("/app/static/img/sistema_solar/nebulosa_orion.jpg") center / cover;
   isolation: isolate;
 }
 .fe2-orbitas {
@@ -531,9 +533,9 @@ code {
   height: 220px;
   top: 45px;
   left: -20%;
-  border: 1px solid #93a7ce;
+  border: 1px solid #93a7ce88;
   border-radius: 50%;
-  box-shadow: 0 0 0 55px #93a7ce18, 0 0 0 110px #93a7ce12;
+  box-shadow: 0 0 0 55px #93a7ce0a, 0 0 0 110px #93a7ce08;
 }
 .fe2-sol, .fe2-tierra {
   position: absolute;
@@ -582,22 +584,69 @@ code {
 }
 .st-key-sistema_solar button::before {
   content: "";
-  width: 65px;
-  height: 65px;
+  width: clamp(65px, 9vw, 110px);
+  height: clamp(65px, 9vw, 110px);
   flex-shrink: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 25%, #e5e8f0, #7e8799 45%, #18243a 85%);
+  background: url("/app/static/img/sistema_solar/luna_galileo.jpg") center / auto 100%;
+  box-shadow: inset -14px -5px 20px #0009, 0 0 20px #b9c8e82a;
   transition: transform 160ms ease;
 }
 .st-key-destino_marte button::before {
-  background: radial-gradient(circle at 30% 25%, #ffb082, #ad482e 45%, #38180f 85%);
+  background: url("/app/static/img/sistema_solar/marte_viking.jpg") center / auto 100%;
+  box-shadow: inset -14px -5px 20px #0009, 0 0 25px #e4370033;
 }
 .st-key-destino_profundo button::before {
-  background: radial-gradient(ellipse at 40% 45%, #fff 0%, #2e96f5 8%, #482762 30%, #07173f 65%);
+  background: url("/app/static/img/sistema_solar/nebulosa_orion.jpg") center / cover;
+  border-radius: 25%;
   box-shadow: 0 0 20px #2e96f555;
 }
 .st-key-sistema_solar button:hover::before,
 .st-key-sistema_solar button:focus-visible::before { transform: scale(1.08); }
+
+/* Amarillo oficial con texto Deep Blue: mantiene contraste al seleccionar. */
+[class*="st-key-ver_"] button:hover,
+[class*="st-key-ver_"] button:focus-visible,
+[class*="st-key-quiz_opcion_"] button:hover,
+[class*="st-key-quiz_opcion_"] button:focus-visible {
+  background: var(--fe1-yellow);
+  border-color: var(--fe1-yellow);
+  color: var(--fe1-deep);
+}
+[class*="st-key-ver_"] button:hover p,
+[class*="st-key-ver_"] button:focus-visible p,
+[class*="st-key-quiz_opcion_"] button:hover p,
+[class*="st-key-quiz_opcion_"] button:focus-visible p {
+  color: var(--fe1-deep);
+}
+.st-key-historia_ficha,
+.st-key-quiz_inicio,
+.st-key-quiz_pregunta {
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 2px solid var(--fe1-yellow);
+  border-radius: var(--fe1-radio);
+  background: linear-gradient(145deg, #0a2258, #07173f);
+  box-shadow: 0 0 22px #eafe0714;
+}
+.st-key-historia_ficha [data-testid="stHeading"] h3 {
+  color: var(--fe1-yellow);
+}
+.fe3-insignia {
+  font-size: 3rem;
+  color: var(--fe1-yellow);
+  text-shadow: 0 0 25px #eafe0766;
+}
+[class*="st-key-quiz_opcion_"] button {
+  min-height: 100px;
+  border: 2px solid var(--fe1-yonder);
+  background: var(--fe1-electric);
+  color: white;
+  text-align: left;
+}
+[class*="st-key-quiz_opcion_"] button p {
+  font-size: 1.1rem;
+  white-space: normal;
+}
 
 [data-testid="stMetric"] {
   padding: 0.9rem 1rem;

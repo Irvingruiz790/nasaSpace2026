@@ -24,3 +24,7 @@ def sistema_solar() -> None:
             if st.button(nombre, key=f"destino_{clave}", width="stretch"):
                 st.switch_page(pagina)
     st.caption("La Luna gira alrededor de la Tierra. Más allá de los planetas, viajan las Voyager.")
+    st.caption(
+        "Imágenes: NASA/JPL (Luna y Marte) · NASA/Hubble (nebulosa de Orión). "
+        "La nebulosa es decorativa: no es la ubicación de las Voyager."
+    )

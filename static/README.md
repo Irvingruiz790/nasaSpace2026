@@ -35,6 +35,21 @@ Fonts ni a ningún CDN.
 
 ## Cómo se sirven
 
+### Selector solar
+
+Imágenes locales de NASA Image and Video Library, preparadas como JPEG progresivo
+1200 × 675, calidad 82 y menos de 300 KB. Los globos conservan la proporción
+con bandas laterales negras; el botón muestra el disco central.
+
+| Archivo en `img/sistema_solar/` | Registro oficial | Crédito |
+|---|---|---|
+| `luna_galileo.jpg` | [PIA00405](https://images.nasa.gov/details/PIA00405), Earth Moon, Galileo | NASA/JPL |
+| `marte_viking.jpg` | [PIA00407](https://images.nasa.gov/details/PIA00407), Global Color Views of Mars | NASA/JPL |
+| `nebulosa_orion.jpg` | [PIA04227](https://images.nasa.gov/details/PIA04227), Orion Nebula and Bow Shock | NASA/Hubble |
+
+La nebulosa también forma el fondo oscuro del selector. Es decorativa, no
+representa el lugar donde están las Voyager. No se descarga al usar la app.
+
 En `.streamlit/config.toml`:
 
 ```toml

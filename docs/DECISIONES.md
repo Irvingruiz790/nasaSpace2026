@@ -41,6 +41,15 @@
 - FE: mantener mapas 2D con 10 horas restantes. El reemplazo 3D exige nuevas
   coordenadas y comunicación de selección con Python; estimación y condiciones
   en [VIABILIDAD_3D.md](VIABILIDAD_3D.md).
+- FE: los globos del selector usan fotos locales de NASA (Luna Galileo, Marte
+  Viking) y la nebulosa de Orión como fondo decorativo, no como ubicación real
+  de las Voyager. Créditos en [static/README.md](../static/README.md).
+- FE: las preguntas de cada ficha se agrupan en un bloque con borde amarillo
+  neón; «Ver ficha» y las opciones del quiz cambian a ese mismo amarillo con
+  texto Deep Blue al pasar el cursor o recibir foco, para mantener el contraste.
+- FE: el quiz pasa a 30 preguntas sacadas de las 10 fichas y sus fuentes, con
+  menú previo, una pregunta por pantalla, avance al responder, orden y opciones
+  mezclados en cada partida. El récord vive en la sesión, no en un servidor.
 
 ## Cómo agregar una decisión
 
