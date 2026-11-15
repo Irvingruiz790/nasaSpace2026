@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import copy
 
-from core import datos
+from PIL import Image
+
+from core import config, datos
 
 
 def piezas() -> list[dict]:
@@ -98,3 +100,39 @@ def test_resumen() -> None:
 
 def test_archivo_inexistente_no_explota() -> None:
     assert datos.cargar_piezas("no-existe.json") == []
+
+
+def test_todas_las_imagenes_cumplen_el_formato() -> None:
+    for pieza in piezas():
+        ruta = config.RAIZ / pieza["imagen"]
+        assert ruta.is_file(), ruta
+        assert ruta.suffix in {".jpg", ".webp"}, ruta
+        assert ruta.stat().st_size < 300 * 1024, ruta
+        with Image.open(ruta) as imagen:
+            assert imagen.format in {"JPEG", "WEBP"}, ruta
+            assert 1150 <= imagen.width <= 1250, ruta
+            assert imagen.width > imagen.height, ruta
+
+
+def test_los_fondos_de_mapa_cumplen_el_formato() -> None:
+    for zona in ("luna", "marte", "espacio_profundo"):
+        ruta = config.DIR_MAPAS / f"{zona}.jpg"
+        assert ruta.is_file(), ruta
+        assert ruta.stat().st_size < 300 * 1024, ruta
+        with Image.open(ruta) as imagen:
+            assert imagen.format == "JPEG", ruta
+            assert imagen.width >= 1400, ruta
+
+
+def test_las_posiciones_cubren_todas_las_piezas() -> None:
+    posiciones = datos.cargar_posiciones()
+    assert set(posiciones) == {"luna", "marte", "espacio_profundo"}
+    for pieza in piezas():
+        marcador = posiciones.get(pieza["zona"], {}).get(pieza["id"])
+        assert marcador is not None, pieza["id"]
+        assert 0 <= marcador["x"] <= 100, pieza["id"]
+        assert 0 <= marcador["y"] <= 100, pieza["id"]
+
+
+def test_posiciones_inexistentes_no_explotan() -> None:
+    assert datos.cargar_posiciones("no-existe.json") == {}

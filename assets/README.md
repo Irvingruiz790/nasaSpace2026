@@ -17,8 +17,11 @@ Aquí no hay código Python: solo archivos que la app muestra tal cual.
 
 - Los nombres de archivo van en **minúsculas y con guiones**. Sin espacios,
   sin acentos, sin «foto final (2).jpg».
-- Las imágenes pesan **menos de 300 KB** y miden unos 1200 px de ancho.
-- Toda imagen necesita crédito en `contenido/fichas.csv`.
+- Las fotos de `img/` pesan **menos de 300 KB**, son **horizontales** y miden
+  unos **1200 px de ancho**.
+- Los fondos de `maps/` pesan **menos de 300 KB** y miden unos **1600 px de
+  ancho**.
+- Toda imagen necesita crédito y `alt_text` en `contenido/fichas.csv`.
 - No se usan fuentes, iconos ni CSS desde internet: si se cae la red, la app
   debe verse igual.
 - No se suben archivos de diseño (`.psd`, `.ai`, `.fig`): solo el resultado

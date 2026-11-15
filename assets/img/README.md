@@ -26,7 +26,7 @@
 
 1. Búscala en **NASA Images** (`images.nasa.gov`) o **NASA Photojournal**.
 2. Descarga la versión horizontal más grande.
-3. Recórtala a unos **1200 px de ancho**.
+3. Recórtala a **1200 px de ancho** y deja el ancho **mayor que el alto**.
 4. Pásala por **Squoosh** (`squoosh.app`) hasta que pese menos de 300 KB.
 5. Guárdala aquí con el nombre exacto del patrón.
 6. Escribe el crédito y el texto alternativo en el CSV.
@@ -34,6 +34,8 @@
 ## Reglas
 
 - Sin crédito no se publica.
+- La imagen debe ser **horizontal** (ancho mayor que alto) y de unos
+  **1200 px de ancho**.
 - No se usan imágenes de Google Imágenes: no tienen licencia clara.
 - No se suben PNG gigantes, BMP ni archivos sin extensión.
 - Si una imagen falta, el conversor lo reporta como **aviso** (no como error),

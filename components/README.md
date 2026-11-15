@@ -19,8 +19,9 @@ Aquí vive lo que se repite en varias pantallas. No hay lógica de datos.
 
 - **Python** (`.py`), funciones pequeñas que reciben datos y pintan.
 - Una función pública por responsabilidad; nombres en español.
-- Los componentes **no leen archivos ni llaman a la API**: reciben `pieza` o
-  `piezas` ya cargadas.
+- Los componentes **no abren el dataset ni llaman a la API**: reciben `pieza`,
+  `piezas` o `posiciones` ya cargadas. Solo pueden comprobar si existe un asset
+  estático, nunca leer su contenido.
 - El estilo va en `assets/styles.css`, no en líneas `style="..."` sueltas.
 - Usar las clases `fe1-*` que ya existen (`.fe1-hero`, `.fe1-badge`, etc.).
 

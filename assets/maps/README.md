@@ -62,4 +62,6 @@ fichas del NSSDCA, proyectadas sobre cada fondo:
   terrestres. La Luna y Marte se dibujan con una imagen y marcadores encima.
 - Las imágenes de fondo no llevan texto ni logos incrustados.
 - Comprimir con Squoosh antes de subir.
-- Los marcadores se ubican a ojo sobre la imagen: se ajustan hasta que coincidan.
+- Las posiciones se calculan con la latitud y longitud reales de cada pieza y se
+  guardan como porcentajes. Si se cambia el fondo, se recalculan y se verifica
+  el encuadre dibujando los marcadores.

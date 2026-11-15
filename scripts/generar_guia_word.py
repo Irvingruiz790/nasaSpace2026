@@ -645,10 +645,10 @@ h2("7.3 Paso a paso")
 paso(
     1,
     "Abre el CSV",
-    "Entra a contenido/fichas.csv con Excel o súbelo a Google Sheets. Ya tiene tres "
-    "filas de ejemplo llenas: Voyager 1, Voyager 2 y Apolo 11. Esas tres te sirven de "
-    "modelo. Complétalas y agrega las que faltan hasta tener 10.",
-    "ves 34 columnas en la primera fila y 3 piezas de ejemplo.",
+    "Entra a contenido/fichas.csv con Excel o súbelo a Google Sheets. Ya tiene las "
+    "10 fichas llenas: 3 de la Luna, 5 de Marte y 2 del espacio profundo. Úsalas como "
+    "modelo y no cambies los ids.",
+    "ves 34 columnas en la primera fila y las 10 piezas completas.",
 )
 
 paso(
@@ -682,8 +682,9 @@ paso(
     "Busca la imagen y guárdala",
     "En NASA Images busca la pieza. Descarga la mejor foto horizontal. Cámbiale el "
     "nombre a {id}_main.jpg (por ejemplo voyager-1_main.jpg) y guárdala en "
-    "assets/img/. Si pesa más de 300 KB, pásala por Squoosh.",
-    "la imagen abre, se ve nítida y pesa menos de 300 KB.",
+    "assets/img/. Recórtala a unos 1200 px de ancho, horizontal. Si pesa más de "
+    "300 KB, pásala por Squoosh.",
+    "la imagen abre, es horizontal, se ve nítida y pesa menos de 300 KB.",
 )
 
 paso(
@@ -886,7 +887,8 @@ tabla(
         ["Nombre", "{id}_main.jpg, todo en minúsculas, con guiones."],
         ["Formato", "JPG o WebP. No PNG gigante, no BMP."],
         ["Peso", "Menos de 300 KB. Usa Squoosh si se pasa."],
-        ["Tamaño", "Unos 1200 píxeles de ancho. Que se vea bien en celular."],
+        ["Tamaño", "Unos 1200 píxeles de ancho y horizontal (ancho mayor que alto)."],
+        ["Mapas", "Fondos de unos 1600 píxeles de ancho y menos de 300 KB."],
         ["Crédito", "Va en la columna credito_imagen. Sin crédito no se publica."],
         ["Alt text", "Describe lo que se ve, no repitas el nombre de la pieza."],
     ],
@@ -1302,7 +1304,7 @@ paso(
     "Carga los datos con core",
     "Nunca abras el JSON a mano. Usa las funciones del backend. Si un campo falta, la "
     "función te lo dice en vez de romperse.",
-    "las tres piezas de ejemplo aparecen en pantalla.",
+    "las 10 piezas aparecen en pantalla.",
 )
 
 codigo(
@@ -1328,15 +1330,16 @@ paso(
     7,
     "Dibuja los mapas",
     "Una imagen de fondo dentro de un contenedor, y encima botones posicionados con "
-    "porcentajes. Las posiciones van en assets/maps/posiciones.json, no en el código.",
+    "porcentajes calculados desde la latitud y longitud reales. Las posiciones van en "
+    "assets/maps/posiciones.json, no en el código.",
     "al hacer clic en un marcador se abre la ficha correcta.",
 )
 
 caja(
     "No uses st.map ni Leaflet",
     "Esos mapas son para la Tierra: usan latitud y longitud terrestres. La Luna y "
-    "Marte se dibujan con una imagen de fondo y marcadores encima, ubicados a ojo con "
-    "porcentajes.",
+    "Marte se dibujan con una imagen de fondo y marcadores encima, ubicados con "
+    "porcentajes calculados desde la latitud y longitud reales.",
     fondo=FONDO_AVISO,
     color=NARANJA,
 )
@@ -1486,7 +1489,7 @@ tabla(
         ["La API de Horizons no responde", "La app usa live_snapshot.json automáticamente. No se toca nada. Backend avisa que está en respaldo."],
         ["El deploy está roto", "Backend revisa el log en Streamlit Cloud, compara requisitos y hace rollback al último commit bueno."],
         ["Hay conflicto de merge", "Se resuelve el dueño del archivo, no quien llegó último. Nunca «accept both» a ciegas."],
-        ["El contenido llega tarde", "Frontend usa las 3 piezas de ejemplo. Backend ayuda a verificar datos."],
+        ["El contenido llega tarde", "Frontend usa las 10 fichas ya cargadas. Backend ayuda a verificar datos."],
         ["Alguien tocó un archivo ajeno", "Se avisa en el chat y se revierte ese cambio. No se discute en el PR."],
         ["Se acabó el tiempo y falta una función", "Se quita del menú y se deja el resto estable. Una app que funciona vale más que una llena de botones rotos."],
         ["No entiendo un error", "Pega el mensaje completo en el chat con: qué hacías, qué archivo y qué ya probaste."],
@@ -1587,7 +1590,7 @@ tabla(
         ["Llenar una ficha", "contenido/fichas.csv"],
         ["Guardar una imagen", "assets/img/{id}_main.jpg"],
         ["Ver el contrato de datos completo", "docs/CONTRATO_DATOS.md"],
-        ["Ver un ejemplo de ficha escrita", "contenido/fichas.csv (las 3 primeras filas)"],
+        ["Ver un ejemplo de ficha escrita", "contenido/fichas.csv (las 10 fichas)"],
         ["Entender las funciones de datos", "core/README.md"],
         ["Saber qué va en cada carpeta", "README.md de esa carpeta"],
         ["Ver los datos que usa la app", "data/artifacts.json (generado, no editar)"],

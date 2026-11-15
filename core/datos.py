@@ -95,6 +95,56 @@ def cargar_piezas(ruta: str | Path | None = None) -> list[dict[str, Any]]:
     return [pieza for pieza in datos if isinstance(pieza, dict)]
 
 
+def ruta_posiciones() -> Path:
+    """Ruta del JSON con las coordenadas de los marcadores de los mapas."""
+    return config.ARCHIVO_POSICIONES
+
+
+def cargar_posiciones(
+    ruta: str | Path | None = None,
+) -> dict[str, dict[str, dict[str, float]]]:
+    """Devuelve las posiciones por zona. Si algo falla, devuelve `{}`.
+
+    El archivo tiene la forma
+    `{"luna": {"apollo-11-lm": {"x": 63.4, "y": 49.5}}}`. Solo se aceptan
+    coordenadas numéricas dentro de 0..100; las demás se descartan para que un
+    error de edición no rompa el mapa.
+    """
+    destino = Path(ruta) if ruta else ruta_posiciones()
+
+    if not destino.exists():
+        log.warning("No existe %s. Las piezas se dibujarán al centro.", destino)
+        return {}
+
+    try:
+        datos = leer_json(destino)
+    except (OSError, json.JSONDecodeError) as exc:
+        log.warning("No se pudo leer %s: %s", destino, exc)
+        return {}
+
+    if not isinstance(datos, dict):
+        log.warning("El archivo %s no contiene un objeto de zonas.", destino)
+        return {}
+
+    posiciones: dict[str, dict[str, dict[str, float]]] = {}
+    for zona, marcadores in datos.items():
+        if not isinstance(zona, str) or not isinstance(marcadores, dict):
+            continue
+        limpios: dict[str, dict[str, float]] = {}
+        for pieza_id, xy in marcadores.items():
+            if not isinstance(pieza_id, str) or not isinstance(xy, dict):
+                continue
+            x, y = xy.get("x"), xy.get("y")
+            if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
+                continue
+            if not (0 <= float(x) <= 100 and 0 <= float(y) <= 100):
+                continue
+            limpios[pieza_id] = {"x": float(x), "y": float(y)}
+        posiciones[zona] = limpios
+
+    return posiciones
+
+
 # --- Consultas -------------------------------------------------------------
 
 

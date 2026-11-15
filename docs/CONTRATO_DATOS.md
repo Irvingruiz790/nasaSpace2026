@@ -161,7 +161,7 @@ Antes de considerar un registro "listo":
 - `credito_imagen`: NASA/JPL-Caltech
 - `historia`: los 5 bloques de la ficha
 - `fuentes`: NASA Voyager, NASA Where are they now, JPL Horizons
-- `revisor`: por asignar
+- `revisor`: nombre de quien hizo la revisión cruzada (por ejemplo, Eduardo)
 - `fecha_verificacion`: 2026-11-14
 
 ---

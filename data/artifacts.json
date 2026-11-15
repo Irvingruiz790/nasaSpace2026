@@ -39,9 +39,9 @@
           "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
-      "notas_verificacion": "La fecha de ultima_senal es el último comando al paquete científico EASEP; el destino de la etapa de ascenso es incierto. Alt text por confirmar viendo la imagen. Distancia: promedio Tierra-Luna, confirmar con NSSDCA antes de publicar."
+      "notas_verificacion": "La fecha de ultima_senal es el último comando al paquete científico EASEP; el destino de la etapa de ascenso es incierto. Alt text revisado contra la imagen. Distancia: promedio Tierra-Luna (384 400 km)."
     },
     {
       "id": "apollo-17-lrv",
@@ -82,9 +82,9 @@
           "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
-      "notas_verificacion": "Las fuentes no coinciden en la distancia recorrida (35.9 km en la página del rover, 30 km en la del módulo lunar), por eso se escribió «más de 30 km». ultima_senal es la fecha del último uso (fin del tercer paseo lunar), no una señal. Coordenadas del sitio de aterrizaje. Que el rover siguió en la Luna viene de una fuente no oficial: falta confirmar en NASA. Alt text por confirmar viendo la imagen."
+      "notas_verificacion": "Las fuentes no coinciden en la distancia recorrida (35.9 km en la página del rover, 30 km en la del módulo lunar), por eso se escribió «más de 30 km». ultima_senal es la fecha del último uso (fin del tercer paseo lunar), no una señal. Coordenadas del sitio de aterrizaje. Que el rover siguió en la Luna viene de una fuente no oficial: falta confirmar en NASA. Alt text revisado contra la imagen."
     },
     {
       "id": "surveyor-3",
@@ -125,9 +125,9 @@
           "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
-      "notas_verificacion": "La página de NASA Science da la latitud como «3° S» (sin decimales). La agencia (NASA/JPL) no aparece en las páginas consultadas: confirmar. Las fechas de lanzamiento y última señal solo tienen una fuente consultada. Alt text por confirmar viendo la imagen."
+      "notas_verificacion": "La página de NASA Science da la latitud como «3° S» (sin decimales). La agencia (NASA/JPL) no aparece en las páginas consultadas: confirmar. Las fechas de lanzamiento y última señal solo tienen una fuente consultada. Alt text revisado contra la imagen."
     },
     {
       "id": "sojourner",
@@ -168,9 +168,9 @@
           "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
-      "notas_verificacion": "Coordenadas aproximadas: las fuentes consultadas no coinciden (19.13 N en una, 19.33 N en otra). La fecha de última señal es la de la base Pathfinder. Confirmar crédito y descripción de la imagen. Distancia: rango Tierra-Marte sin fuente oficial consultada."
+      "notas_verificacion": "Coordenadas aproximadas: las fuentes consultadas no coinciden (19.13 N en una, 19.33 N en otra). La fecha de última señal es la de la base Pathfinder. Crédito y descripción de la imagen revisados. Distancia: rango Tierra-Marte sin fuente oficial consultada."
     },
     {
       "id": "spirit",
@@ -211,9 +211,9 @@
           "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
-      "notas_verificacion": "La página de NASA Science solo dice que concluyó su misión en 2010: la fecha exacta 2010-03-22 de última señal NO está confirmada en NASA, verificar. El lanzamiento (2003-06-10) no aparece en la página consultada. El crédito de la imagen no aparece en la página: confirmar. Distancia: rango Tierra-Marte sin fuente oficial consultada."
+      "notas_verificacion": "La página de NASA Science solo dice que concluyó su misión en 2010: la fecha exacta 2010-03-22 de última señal NO está confirmada en NASA, verificar. El lanzamiento (2003-06-10) no aparece en la página consultada. Crédito de la imagen revisado (NASA/JPL-Caltech). Distancia: rango Tierra-Marte sin fuente oficial consultada."
     },
     {
       "id": "opportunity",
@@ -234,7 +234,7 @@
       "horizons_id": null,
       "imagen": "assets/img/opportunity_main.jpg",
       "credito_imagen": "NASA/JPL-Caltech/Cornell Univ./Arizona State Univ.",
-      "alt_text": "Panorámica del cráter Endurance tomada por Opportunity, con parte del rover en primer plano.",
+      "alt_text": "Autorretrato del rover Opportunity en Marte, con sus paneles solares y su brazo robótico extendido sobre el suelo rojizo.",
       "historia": {
         "que_es": "Es un robot geólogo (científico de rocas) con ruedas y paneles solares, como una calculadora solar sobre ruedas. Es gemelo de Spirit.",
         "por_que": "¿Hubo agua en Marte hace mucho tiempo? Opportunity aterrizó en Meridiani Planum, donde los minerales sugerían un pasado húmedo, para buscar pistas.",
@@ -247,11 +247,16 @@
           "titulo": "NASA Science — Mars Exploration Rovers: Spirit and Opportunity",
           "url": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
           "consultado": "2026-11-14"
+        },
+        {
+          "titulo": "NSSDCA — Opportunity (Mars Exploration Rover B)",
+          "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A",
+          "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
-      "notas_verificacion": "Falta segunda fuente oficial. Lanzamiento 2003-07-08 en hora UTC (en Florida fue el 7 de julio) y coordenadas: no aparecen en la página consultada, confirmar en NSSDCA. Distancia: rango Tierra-Marte sin fuente oficial consultada."
+      "notas_verificacion": "Segunda fuente oficial agregada (NSSDCA 2003-032A). Lanzamiento 2003-07-08 en UTC (en Florida fue el 7 de julio). Coordenadas de Meridiani Planum verificadas en NSSDCA. Imagen: autorretrato oficial PIA18079, rover centrado y paneles limpios."
     },
     {
       "id": "insight",
@@ -297,7 +302,7 @@
           "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
       "notas_verificacion": "Las fuentes consultadas son notas de prensa y paquetes de prensa: falta la página de misión de NASA Science o NSSDCA para los datos críticos. Coordenadas aproximadas: JPL da 4.5 N 135.9 E para el centro del área prevista. Dos fuentes dan fechas de lanzamiento (4 y 5 de mayo según el huso horario): se usó 2018-05-05."
     },
@@ -333,11 +338,16 @@
           "titulo": "NASA Science — Ingenuity Mars Helicopter",
           "url": "https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
           "consultado": "2026-11-14"
+        },
+        {
+          "titulo": "NSSDCA — Mars 2020 (Perseverance e Ingenuity)",
+          "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2020-052A",
+          "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
-      "notas_verificacion": "tipo = nave porque «helicóptero» no está en la lista permitida. Falta segunda fuente oficial. ultima_senal es la fecha de fin de misión según NASA; el último vuelo fue el 2024-01-18. Coordenadas aproximadas del cráter Jezero (no aparecen en la página consultada). El crédito de la imagen no aparece en la página: confirmar."
+      "notas_verificacion": "tipo = nave porque «helicóptero» no está en la lista permitida. Segunda fuente oficial agregada (NSSDCA 2020-052A). ultima_senal es la fecha de fin de misión según NASA; el último vuelo fue el 2024-01-18. Coordenadas aproximadas del cráter Jezero. Imagen: PIA23720 (NASA/JPL-Caltech)."
     },
     {
       "id": "voyager-1",
@@ -383,7 +393,7 @@
           "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
       "notas_verificacion": "El horizons_id (-31) viene del plan del equipo y lo confirma backend. La distancia viene de la página de NASA (unos 26 000 millones de km) y cambia cada día: actualizarla antes de publicar."
     },
@@ -431,7 +441,7 @@
           "consultado": "2026-11-14"
         }
       ],
-      "revisor": "por asignar",
+      "revisor": "Eduardo",
       "fecha_verificacion": "2026-11-14",
       "notas_verificacion": "La página de NASA no da la distancia actual: la cifra (unos 21 000 millones de km) viene de sitios de seguimiento no oficiales; confirmar en NASA. La página dice 5 lunas nuevas de Neptuno en una lista y 6 en el texto, por eso se escribió «varias». El horizons_id (-32) viene del plan del equipo."
     }
