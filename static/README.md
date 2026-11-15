@@ -11,10 +11,21 @@ fuentes tipográficas viven aquí y no en `assets/`: desde `assets/` darían 404
 
 | Ruta | Contenido | Licencia |
 |---|---|---|
-| `fonts/exo2-latin.woff2` | Exo 2, títulos y encabezados | SIL Open Font License 1.1 |
+| `fonts/orbitron-latin.woff2` | Orbitron, títulos y encabezados | SIL Open Font License 1.1 |
 | `fonts/overpass-latin.woff2` | Overpass, texto corrido | SIL Open Font License 1.1 |
-| `fonts/OFL-Exo2.txt` | Licencia de Exo 2 | — |
+| `fonts/OFL-Orbitron.txt` | Licencia de Orbitron | — |
 | `fonts/OFL-Overpass.txt` | Licencia de Overpass | — |
+| `img/encabezados/` | Fondos fotográficos de los encabezados (1200 × 675) | Dominio público NASA |
+
+Los cuatro fondos salen del archivo de imágenes del NSSDCA y se recortaron a
+1200 × 675 px para que pesen menos de 300 KB:
+
+| Archivo | Foto | Crédito |
+|---|---|---|
+| `img/encabezados/luna_apollo17.jpg` | Harrison Schmitt junto a la roca Boulder, Apollo 17 | NASA, 1972 |
+| `img/encabezados/marte_viking1.jpg` | Panorama del Viking 1 Lander en Marte | NASA/JPL, 1976 |
+| `img/encabezados/espacio_voyager.jpg` | Sonda Voyager | NASA/JPL |
+| `img/encabezados/vivo_apollo8.jpg` | Earthrise, Apollo 8 | NASA, 1968 |
 
 Las dos familias son libres, se pueden empaquetar y se sirven desde el propio
 dominio de la app. Así se ve igual sin internet y no hay peticiones a Google
@@ -29,9 +40,9 @@ En `.streamlit/config.toml`:
 enableStaticServing = true
 
 [[theme.fontFaces]]
-family = "Exo 2"
-url = "app/static/fonts/exo2-latin.woff2"
-weight_range = "100 900"
+family = "Orbitron"
+url = "app/static/fonts/orbitron-latin.woff2"
+weight_range = "400 900"
 ```
 
 El navegador las pide en `/app/static/fonts/...`. `assets/styles.css` declara

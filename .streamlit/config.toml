@@ -4,7 +4,7 @@
 # Identidad visual NASA Space Apps (Brand Guide, junio 2026):
 # - Paleta oficial en tema oscuro: Deep Blue de fondo, Electric Blue y Neon Blue
 #   en acentos, Neon Yellow solo como acento (regla 60-30-10).
-# - Exo 2 para títulos y Overpass para texto. Las dos son OFL y viajan en
+# - Orbitron para títulos y Overpass para texto. Las dos son OFL y viajan en
 #   `static/fonts/`, así que la app se ve igual sin internet.
 
 [theme]
@@ -14,13 +14,13 @@ backgroundColor = "#07173F"
 secondaryBackgroundColor = "#0A2258"
 textColor = "#EAF0FF"
 font = "Overpass, sans-serif"
-headingFont = "Exo 2, sans-serif"
-headingFontWeights = [800]
+headingFont = "Orbitron, sans-serif"
+headingFontWeights = [700]
 
 [[theme.fontFaces]]
-family = "Exo 2"
-url = "app/static/fonts/exo2-latin.woff2"
-weight_range = "100 900"
+family = "Orbitron"
+url = "app/static/fonts/orbitron-latin.woff2"
+weight_range = "400 900"
 style = "normal"
 
 [[theme.fontFaces]]
@@ -28,6 +28,11 @@ family = "Overpass"
 url = "app/static/fonts/overpass-latin.woff2"
 weight_range = "100 900"
 style = "normal"
+
+[client]
+# Solo las opciones que la propia app declara: fuera el menú de desarrollador y
+# el selector de tema claro/oscuro. La app es oscura por diseño.
+toolbarMode = "minimal"
 
 [browser]
 # Streamlit Cloud no necesita telemetría y el hackatón no la usa.

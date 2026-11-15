@@ -21,6 +21,11 @@
 | 2026-11-14 | Las fuentes se sirven desde `static/` con `server.enableStaticServing`, no desde un CDN | FE + BE | Google Fonts por URL | Streamlit solo publica `./static`; sin red la app debe verse igual |
 | 2026-11-14 | Encabezado «Menú» y encabezados temáticos por sección con CSS propio | FE | Fotos de fondo por sección | La guía de marca pide no poner texto encima de fotografías; el patrón de estrellas es CSS y pesa 0 KB |
 | 2026-11-14 | Sin 3D real (WebGL/Three.js) por ahora | FE | Three.js o componente propio | Pesaría más de 600 KB, rompe «sin librerías nuevas» y castiga el celular; se prefieren esferas y fondos con CSS |
+| 2026-11-15 | Los títulos pasan de Exo 2 a **Orbitron** (OFL, subset latin, 11.8 KB); Overpass se mantiene para el texto | FE | Exo 2; Michroma; Audiowide | Orbitron tiene formas geométricas de instrumento espacial y conserva la legibilidad en tamaños pequeños; se empaqueta local igual que Overpass |
+| 2026-11-15 | Encabezados de Luna, Marte, espacio profundo y En vivo usan fotos reales de NSSDCA con una capa de degradado para el contraste | FE | Gradientes CSS; fotos de JPL; imágenes generadas | El usuario pidió imágenes realistas del archivo NSSDCA; la capa oscura mantiene el texto en AA y el crédito va visible bajo la descripción |
+| 2026-11-15 | El menú lateral sube a 1.5 rem el rótulo «MENÚ» y a 1.08 rem los enlaces | FE | Menú actual de 0.8 rem | El menú se leía muy pequeño en el celular y en el proyector del pitch |
+| 2026-11-15 | `client.toolbarMode = "minimal"`: la app no ofrece fondo claro/oscuro | FE + BE | Ocultar el menú solo con CSS | La identidad es oscura por diseño; `minimal` quita el menú de desarrollador y el selector de tema sin romper el botón de la barra lateral |
+| 2026-11-15 | `.block-container` reserva 4.75 rem arriba (60 px del header + 1 rem) en escritorio y celular | FE | Bajar el `z-index` del header; ocultar el header | El header de Streamlit es absoluto y tapaba el borde superior del hero y la etiqueta de estado de la ficha |
 
 ---
 

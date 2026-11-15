@@ -1231,7 +1231,7 @@ tabla(
         ["Figma o Excalidraw", "Dibujar el wireframe antes de programar"],
         ["Chrome o Edge con DevTools", "Ver la app como en un celular (modo dispositivo)"],
         ["Inkscape o Photopea", "Preparar las imágenes de fondo de los mapas"],
-        ["Fuentes locales en static/fonts/", "Exo 2 y Overpass, empaquetadas y sin CDN"],
+        ["Fuentes locales en static/fonts/", "Orbitron y Overpass, empaquetadas y sin CDN"],
         ["Squoosh", "Comprimir imágenes de fondo"],
         ["WebAIM Contrast Checker", "Verificar que el texto se lea bien"],
     ],
@@ -1245,9 +1245,9 @@ tabla(
     [
         ["Python (.py)", "Cada pantalla y cada componente", "app.py, pages/, components/"],
         ["CSS", "Colores, tipografía, tarjetas, badges", "assets/styles.css"],
-        ["WOFF2", "Fuentes Exo 2 y Overpass con su licencia OFL", "static/fonts/"],
+        ["WOFF2", "Fuentes Orbitron y Overpass con su licencia OFL", "static/fonts/"],
         ["JSON", "Posiciones x/y de los marcadores en cada mapa", "assets/maps/posiciones.json"],
-        ["JPG o WebP", "Fondos de mapas e imágenes", "assets/maps/ y assets/img/"],
+        ["JPG o WebP", "Fondos de mapas, fichas y encabezados", "assets/maps/, assets/img/ y static/img/encabezados/"],
     ],
     anchos=[3.4, 7.2, 6.0],
 )
@@ -1372,8 +1372,10 @@ paso(
     "Estilos y accesibilidad",
     "Un solo archivo de CSS con variables de color. Usa la paleta oficial de NASA "
     "Space Apps: fondo Deep Blue, acentos Electric/Neon Blue y Neon Yellow solo "
-    "para resaltar. Los títulos van en Exo 2 y el texto en Overpass, empaquetadas "
-    "en static/fonts/. Texto mínimo de 16 px, contraste alto, foco visible y alt "
+    "para resaltar. Los títulos van en Orbitron y el texto en Overpass, empaquetadas "
+    "en static/fonts/. Los encabezados de Luna, Marte, espacio profundo y En vivo "
+    "usan fotos reales del NSSDCA (static/img/encabezados/) con su crédito visible. "
+    "Texto mínimo de 16 px, contraste alto, foco visible y alt "
     "text en todas las imágenes.",
     "se lee en un celular sin hacer zoom.",
 )

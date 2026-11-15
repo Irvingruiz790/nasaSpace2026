@@ -9,14 +9,14 @@
      oscuro: Deep Blue de fondo, Electric/Neon Blue en bloques y Neon Yellow
      solo como acento (60-30-10). El amarillo nunca es fondo de lectura.
    - Texto mínimo 16 px. Contraste AA. Foco visible. Celular de 390 px.
-   - Nada de fuentes por CDN: Exo 2 y Overpass viajan en `static/fonts/` y se
-     sirven desde `/app/static/...` con `server.enableStaticServing`.
+   - Nada de fuentes por CDN: Orbitron y Overpass viajan en `static/fonts/` y
+     se sirven desde `/app/static/...` con `server.enableStaticServing`.
    ========================================================================== */
 
 @font-face {
-  font-family: "Exo 2";
-  src: url("/app/static/fonts/exo2-latin.woff2") format("woff2");
-  font-weight: 100 900;
+  font-family: "Orbitron";
+  src: url("/app/static/fonts/orbitron-latin.woff2") format("woff2");
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
@@ -54,7 +54,7 @@
   --fe1-radio: 18px;
   --fe1-radio-grande: 26px;
   --fe1-sombra: 0 18px 40px rgba(2, 8, 25, 0.45);
-  --fe1-fuente-titulos: "Exo 2", "Segoe UI", system-ui, sans-serif;
+  --fe1-fuente-titulos: "Orbitron", "Segoe UI", system-ui, sans-serif;
   --fe1-fuente-texto: "Overpass", "Segoe UI", system-ui, sans-serif;
   --fe1-gradiente: linear-gradient(45deg, var(--fe1-electric) 0%, var(--fe1-deep) 100%);
 
@@ -87,7 +87,9 @@ body,
 }
 
 .block-container {
-  padding-top: 2.2rem;
+  /* La barra superior de Streamlit mide 60 px y es `position: absolute`:
+     sin este colchón, el encabezado y la etiqueta de la ficha quedan debajo. */
+  padding-top: 4.75rem;
   padding-bottom: 4rem;
   max-width: 1150px;
 }
@@ -99,9 +101,17 @@ h4,
 h5,
 h6 {
   font-family: var(--fe1-fuente-titulos);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--fe1-texto);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.005em;
+}
+
+/* `st.title` trae 2.75 rem: con Orbitron, un nombre largo de ficha se parte
+   en cuatro líneas en el celular. */
+[data-testid="stHeading"] h1 {
+  font-size: 2.1rem;
+  line-height: 1.22;
+  letter-spacing: 0.01em;
 }
 
 p,
@@ -143,6 +153,13 @@ code {
   border-radius: 6px;
 }
 
+/* El menú ⋮ de Streamlit incluye el selector de fondo claro/oscuro. La app es
+   oscura por diseño: `client.toolbarMode = "minimal"` ya lo oculta y esta regla
+   cubre el caso de una instancia que lo vuelva a mostrar. */
+[data-testid="stMainMenu"] {
+  display: none;
+}
+
 /* --- Barra lateral ------------------------------------------------------- */
 
 [data-testid="stSidebar"] {
@@ -153,18 +170,29 @@ code {
 [data-testid="stSidebarNav"]::before {
   content: "Menú";
   display: block;
-  margin: 0.2rem 0 0.9rem 0.65rem;
+  margin: 0.35rem 0 1rem 0.6rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid rgba(234, 254, 7, 0.5);
   font-family: var(--fe1-fuente-titulos);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fe1-yellow);
+  text-shadow: 0 0 18px rgba(234, 254, 7, 0.35);
 }
 
 [data-testid="stSidebarNavLink"] {
+  min-height: 2.9rem;
+  padding: 0.45rem 0.6rem;
   border-radius: 12px;
   transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+[data-testid="stSidebarNavLink"] [data-testid="stMarkdownContainer"] p {
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 [data-testid="stSidebarNavLink"]:hover {
@@ -189,7 +217,7 @@ code {
 
 [data-testid="stSidebarNavLink"][href$="/"] [data-testid="stMarkdownContainer"] p::after {
   content: "Inicio";
-  font-size: 1rem;
+  font-size: 1.08rem;
 }
 
 /* --- Encabezado (hero) --------------------------------------------------- */
@@ -220,18 +248,30 @@ code {
 
 .fe1-hero h1 {
   margin: 0 0 0.6rem 0;
-  font-size: 2.5rem;
-  line-height: 1.12;
+  font-size: 2.2rem;
+  line-height: 1.16;
+  letter-spacing: 0.01em;
   color: var(--fe1-white);
   text-shadow: 0 2px 18px rgba(2, 8, 25, 0.55);
 }
 
 .fe1-hero p {
   margin: 0;
-  max-width: 62ch;
+  max-width: 50ch;
   font-size: 1.08rem;
   line-height: 1.6;
   color: #dbe6ff;
+}
+
+.fe1-hero__credito {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--fe1-fuente-texto);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(234, 240, 255, 0.88);
 }
 
 .fe1-hero--pequeno {
@@ -240,43 +280,57 @@ code {
 }
 
 .fe1-hero--pequeno h1 {
-  font-size: 1.9rem;
+  font-size: 1.7rem;
 }
 
-/* Encabezados temáticos: mismo hero, distinto cielo. */
+/* Encabezados temáticos: mismo hero, distinto cielo. Cuatro de ellos usan
+   fotos reales de NSSDCA; la capa oscura de la izquierda mantiene el texto
+   legible (AA) y deja ver la imagen a la derecha. */
 .fe1-hero--luna {
-  background:
-    radial-gradient(circle at 82% 26%, rgba(190, 205, 235, 0.35) 0%, transparent 46%),
-    linear-gradient(135deg, #1b2f5c 0%, #0a1c42 55%, var(--fe1-deep) 100%);
+  background-color: #1b2f5c;
+  background-image:
+    linear-gradient(105deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 23, 63, 0.86) 48%, rgba(7, 23, 63, 0.50) 100%),
+    url("/app/static/img/encabezados/luna_apollo17.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .fe1-hero--marte {
-  background:
-    radial-gradient(circle at 84% 22%, rgba(228, 55, 0, 0.55) 0%, transparent 48%),
-    linear-gradient(135deg, #6e1508 0%, #2a0b14 55%, var(--fe1-deep) 100%);
+  background-color: #6e1508;
+  background-image:
+    linear-gradient(105deg, rgba(7, 23, 63, 0.94) 0%, rgba(40, 10, 14, 0.86) 48%, rgba(40, 10, 14, 0.50) 100%),
+    url("/app/static/img/encabezados/marte_viking1.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .fe1-hero--espacio-profundo {
-  background:
-    radial-gradient(circle at 18% 18%, rgba(9, 96, 225, 0.5) 0%, transparent 45%),
-    linear-gradient(135deg, #041033 0%, var(--fe1-deep) 60%, #02081b 100%);
+  background-color: #041033;
+  background-image:
+    linear-gradient(105deg, rgba(4, 16, 51, 0.94) 0%, rgba(4, 16, 51, 0.86) 48%, rgba(4, 16, 51, 0.50) 100%),
+    url("/app/static/img/encabezados/espacio_voyager.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.fe1-hero--luna::before,
+.fe1-hero--marte::before,
+.fe1-hero--vivo::before {
+  background-image: none;
 }
 
 .fe1-hero--espacio-profundo::before {
-  opacity: 0.95;
+  opacity: 0.55;
   background-size: 190px 160px;
 }
 
 .fe1-hero--vivo {
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(46, 150, 245, 0.07) 0px,
-      rgba(46, 150, 245, 0.07) 1px,
-      transparent 1px,
-      transparent 7px
-    ),
-    linear-gradient(115deg, var(--fe1-electric) 0%, #07265c 45%, var(--fe1-deep) 100%);
+  background-color: var(--fe1-electric);
+  background-image:
+    linear-gradient(105deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 38, 92, 0.86) 48%, rgba(7, 38, 92, 0.50) 100%),
+    url("/app/static/img/encabezados/vivo_apollo8.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .fe1-hero--quiz {
@@ -305,7 +359,7 @@ code {
 }
 
 .fe1-hero--inicio h1 {
-  font-size: 3rem;
+  font-size: 2.7rem;
 }
 
 /* --- Etiqueta de estado -------------------------------------------------- */
@@ -579,22 +633,62 @@ code {
   .block-container {
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 1.2rem;
+    /* Mismo colchón que en escritorio: la barra superior sigue midiendo 60 px. */
+    padding-top: 4.75rem;
   }
 
   .fe1-hero,
   .fe1-hero--inicio {
-    padding: 1.6rem 1.2rem;
+    padding: 1.5rem 1.2rem;
     border-radius: var(--fe1-radio);
   }
 
   .fe1-hero h1,
   .fe1-hero--inicio h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    letter-spacing: 0.005em;
   }
 
   .fe1-hero p {
     font-size: 1rem;
+    /* Deja el texto sobre la zona oscura de la foto; la imagen se ve a la
+       derecha y el contraste se mantiene por encima de AA. */
+    max-width: 26ch;
+  }
+
+  .fe1-hero__credito {
+    font-size: 0.72rem;
+  }
+
+  [data-testid="stHeading"] h1 {
+    font-size: 1.7rem;
+  }
+
+  /* En el celular se oscurece más la foto: el texto se queda en la mitad
+     izquierda y la imagen se asoma por la derecha. */
+  .fe1-hero--luna {
+    background-image:
+      linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 23, 63, 0.78) 70%, rgba(7, 23, 63, 0.50) 100%),
+      url("/app/static/img/encabezados/luna_apollo17.jpg");
+  }
+
+  .fe1-hero--marte {
+    background-image:
+      linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(40, 10, 14, 0.78) 70%, rgba(40, 10, 14, 0.55) 100%),
+      url("/app/static/img/encabezados/marte_viking1.jpg");
+  }
+
+  .fe1-hero--espacio-profundo {
+    background-image:
+      linear-gradient(100deg, rgba(4, 16, 51, 0.94) 0%, rgba(4, 16, 51, 0.82) 70%, rgba(4, 16, 51, 0.62) 100%),
+      url("/app/static/img/encabezados/espacio_voyager.jpg");
+  }
+
+  .fe1-hero--vivo {
+    background-image:
+      linear-gradient(100deg, rgba(7, 23, 63, 0.94) 0%, rgba(7, 38, 92, 0.78) 70%, rgba(7, 38, 92, 0.52) 100%),
+      url("/app/static/img/encabezados/vivo_apollo8.jpg");
   }
 
   [data-testid="stMetricValue"] {

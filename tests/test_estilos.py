@@ -6,16 +6,25 @@ import tomllib
 from pathlib import Path
 
 import pytest
+from PIL import Image
 
 RAIZ = Path(__file__).resolve().parent.parent
 CSS = RAIZ / "assets" / "styles.css"
 CONFIG = RAIZ / ".streamlit" / "config.toml"
 FUENTES = RAIZ / "static" / "fonts"
+ENCABEZADOS = RAIZ / "static" / "img" / "encabezados"
 
 FAMILIAS = {
-    "Exo 2": FUENTES / "exo2-latin.woff2",
+    "Orbitron": FUENTES / "orbitron-latin.woff2",
     "Overpass": FUENTES / "overpass-latin.woff2",
 }
+
+FONDOS = (
+    "luna_apollo17.jpg",
+    "marte_viking1.jpg",
+    "espacio_voyager.jpg",
+    "vivo_apollo8.jpg",
+)
 
 
 @pytest.fixture(scope="module")
@@ -37,7 +46,7 @@ def test_la_fuente_existe_y_pesa_menos_de_60_kb(familia: str, archivo: Path) -> 
 
 @pytest.mark.parametrize(
     "licencia",
-    ["OFL-Exo2.txt", "OFL-Overpass.txt"],
+    ["OFL-Orbitron.txt", "OFL-Overpass.txt"],
 )
 def test_la_licencia_ofl_esta_empaquetada(licencia: str) -> None:
     archivo = FUENTES / licencia
@@ -52,15 +61,35 @@ def test_el_css_no_pide_nada_por_internet(css: str) -> None:
 
 def test_el_css_declara_las_dos_familias_locales(css: str) -> None:
     assert '@font-face' in css
-    assert "/app/static/fonts/exo2-latin.woff2" in css
+    assert "/app/static/fonts/orbitron-latin.woff2" in css
     assert "/app/static/fonts/overpass-latin.woff2" in css
-    assert 'font-family: "Exo 2"' in css
+    assert 'font-family: "Orbitron"' in css
     assert 'font-family: "Overpass"' in css
 
 
 def test_el_css_usa_la_paleta_oficial(css: str) -> None:
     for color in ("#07173f", "#0042a6", "#0960e1", "#2e96f5", "#e43700", "#eafe07"):
         assert color in css.lower()
+
+
+def test_el_css_reserva_espacio_para_la_barra_superior(css: str) -> None:
+    # El header de Streamlit mide 60 px y es absoluto: sin colchón tapa el
+    # encabezado y la etiqueta de la ficha.
+    assert "padding-top: 4.75rem" in css
+
+
+def test_el_css_usa_fotos_reales_en_los_cuatro_encabezados(css: str) -> None:
+    for fondo in FONDOS:
+        assert f"/app/static/img/encabezados/{fondo}" in css
+
+
+@pytest.mark.parametrize("nombre", FONDOS)
+def test_los_fondos_son_horizontales_y_pesan_menos_de_300_kb(nombre: str) -> None:
+    archivo = ENCABEZADOS / nombre
+    assert archivo.is_file(), f"Falta el fondo {nombre}"
+    assert 0 < archivo.stat().st_size < 300 * 1024
+    with Image.open(archivo) as imagen:
+        assert imagen.size == (1200, 675)
 
 
 def test_el_css_tiene_foco_visible_y_movimiento_reducido(css: str) -> None:
@@ -85,6 +114,9 @@ def test_el_css_trae_los_encabezados_tematicos(css: str) -> None:
 def test_la_barra_lateral_dice_menu(css: str) -> None:
     assert '[data-testid="stSidebarNav"]::before' in css
     assert 'content: "Menú"' in css
+    # Letra grande para el rótulo y para los enlaces.
+    assert "font-size: 1.5rem" in css
+    assert "font-size: 1.08rem" in css
 
 
 def test_el_tema_es_oscuro_y_oficial(config: dict) -> None:
@@ -97,14 +129,22 @@ def test_el_tema_es_oscuro_y_oficial(config: dict) -> None:
 
 def test_el_tema_carga_las_dos_familias_locales(config: dict) -> None:
     tema = config["theme"]
-    assert "Exo 2" in tema["headingFont"]
+    assert "Orbitron" in tema["headingFont"]
     assert "Overpass" in tema["font"]
 
     familias = {fuente["family"]: fuente for fuente in tema["fontFaces"]}
-    assert set(familias) == {"Exo 2", "Overpass"}
+    assert set(familias) == {"Orbitron", "Overpass"}
     for fuente in familias.values():
         assert fuente["url"].startswith("app/static/fonts/")
         assert fuente["url"].endswith(".woff2")
+
+
+def test_la_app_no_muestra_el_selector_de_tema(config: dict, css: str) -> None:
+    # `minimal` deja solo las opciones que declara la app: sin menú de
+    # desarrollador ni selector de fondo claro/oscuro. La CSS lo refuerza.
+    assert config["client"]["toolbarMode"] == "minimal"
+    assert '[data-testid="stMainMenu"]' in css
+    assert "display: none" in css
 
 
 def test_el_servidor_sirve_los_archivos_estaticos(config: dict) -> None:
