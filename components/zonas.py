@@ -37,7 +37,7 @@ def pagina_zona(zona: str, titulo: str, descripcion: str, icono: str) -> None:
         st.page_link("app.py", label="Volver al inicio", icon="🏠")
         return
 
-    mapa_zona(zona, piezas)
+    mapa_zona(zona, piezas, datos.cargar_posiciones())
 
     st.subheader("Las fichas de esta zona")
     for pieza in piezas:

@@ -22,7 +22,8 @@ Streamlit arma el menú lateral solo, con el nombre de cada archivo.
 - **Python** (`.py`), una pantalla por archivo.
 - El nombre empieza con número y guion bajo: `8_Mi_pagina.py`. Así se controla
   el orden del menú.
-- Cada archivo llama a `aplicar_estilos()` al inicio.
+- Las tres páginas de zona llaman a `pagina_zona()`, que aplica los estilos.
+  Las demás llaman a `aplicar_estilos()` al inicio.
 - Los datos se piden a `core` (`datos`, `vivo`, `formato`). **Nunca** se abre un
   JSON a mano ni se importa `requests`.
 - La pieza elegida viaja en `st.session_state["pieza_sel"]`; para cambiar de

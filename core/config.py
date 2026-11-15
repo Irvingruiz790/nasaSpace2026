@@ -13,9 +13,11 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 DIR_DATOS = RAIZ / "data"
 DIR_IMAGENES = RAIZ / "assets" / "img"
+DIR_MAPAS = RAIZ / "assets" / "maps"
 
 ARCHIVO_PIEZAS = DIR_DATOS / "artifacts.json"
 ARCHIVO_SNAPSHOT = DIR_DATOS / "live_snapshot.json"
+ARCHIVO_POSICIONES = DIR_MAPAS / "posiciones.json"
 
 # --- Fuentes externas ------------------------------------------------------
 

@@ -3,8 +3,8 @@
 Dueño: Frontend.
 
 Este es el esqueleto que ya funciona. Dibuja la imagen de fondo (si existe) y
-pone un botón por pieza, ordenados de izquierda a derecha según
-`assets/maps/posiciones.json`.
+pone un botón por pieza, ordenados de izquierda a derecha según las posiciones
+que recibe ya cargadas desde `assets/maps/posiciones.json`.
 
 El mapa "de verdad" —marcadores superpuestos sobre la imagen en las coordenadas
 x/y del JSON— es la tarea 7 del frontend. Aquí se deja lo mínimo para que las
@@ -13,14 +13,12 @@ tres zonas ya se puedan recorrer.
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from typing import Any
 
 import streamlit as st
 
 RAIZ = Path(__file__).resolve().parent.parent
-ARCHIVO_POSICIONES = RAIZ / "assets" / "maps" / "posiciones.json"
 
 FONDOS = {
     "luna": "luna.jpg",
@@ -29,15 +27,11 @@ FONDOS = {
 }
 
 
-def leer_posiciones() -> dict[str, Any]:
-    """Lee las coordenadas de los marcadores. Si el archivo falta, usa vacío."""
-    try:
-        return json.loads(ARCHIVO_POSICIONES.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return {}
-
-
-def mapa_zona(zona: str, piezas: list[dict[str, Any]]) -> None:
+def mapa_zona(
+    zona: str,
+    piezas: list[dict[str, Any]],
+    posiciones: dict[str, dict[str, dict[str, float]]],
+) -> None:
     """Pinta el fondo de la zona y un botón por pieza."""
     fondo = RAIZ / "assets" / "maps" / FONDOS.get(zona, "")
 
@@ -51,10 +45,10 @@ def mapa_zona(zona: str, piezas: list[dict[str, Any]]) -> None:
             unsafe_allow_html=True,
         )
 
-    posiciones = leer_posiciones().get(zona) or {}
+    marcadores = posiciones.get(zona) or {}
 
     def clave_orden(pieza: dict[str, Any]) -> float:
-        return float(posiciones.get(pieza.get("id", ""), {}).get("x", 50))
+        return float(marcadores.get(pieza.get("id", ""), {}).get("x", 50))
 
     ordenadas = sorted(piezas, key=clave_orden)
     columnas = st.columns(max(1, len(ordenadas)))

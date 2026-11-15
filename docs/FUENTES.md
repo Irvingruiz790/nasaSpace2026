@@ -50,16 +50,16 @@ Para cada ficha:
 
 | ID | Pieza | Fuente 1 | Fuente 2 | Imagen / crédito | Revisor | Fecha | Notas |
 |---|---|---|---|---|---|---|---|
-| `apollo-11-lm` | Módulo Lunar Eagle | NSSDCA 1969-059C | NSSDCA Apollo 11 | NASA | | | Destino de la etapa de ascenso incierto |
-| `apollo-17-lrv` | LRV del Apolo 17 | NSSDCA | NASA Science | NASA | | | |
-| `surveyor-3` | Surveyor 3 | NASA Science | NSSDCA | NASA | | | |
-| `sojourner` | Sojourner | NASA Pathfinder | NSSDCA | NASA/JPL | | | |
-| `spirit` | Spirit | NASA Science | NSSDCA | NASA/JPL-Caltech | | | |
-| `opportunity` | Opportunity | NASA Science | NSSDCA | NASA/JPL-Caltech | | | |
-| `insight` | InSight | NASA Science | NSSDCA | NASA/JPL-Caltech | | | |
-| `ingenuity` | Ingenuity | NASA Science | NSSDCA | NASA/JPL-Caltech | | | |
-| `voyager-1` | Voyager 1 | NASA Voyager | JPL Horizons | NASA/JPL-Caltech | | | `horizons_id = -31` |
-| `voyager-2` | Voyager 2 | NASA Voyager | JPL Horizons | NASA/JPL-Caltech | | | Verificar ID en Horizons |
+| `apollo-11-lm` | Módulo Lunar Eagle | NSSDCA 1969-059C | NSSDCA Apollo 11 | NASA | Eduardo | 2026-11-14 | Destino de la etapa de ascenso incierto |
+| `apollo-17-lrv` | LRV del Apolo 17 | NSSDCA | NASA Science | NASA | Eduardo | 2026-11-14 | |
+| `surveyor-3` | Surveyor 3 | NASA Science | NSSDCA | NASA | Eduardo | 2026-11-14 | |
+| `sojourner` | Sojourner | NASA Pathfinder | NSSDCA | NASA/JPL-Caltech | Eduardo | 2026-11-14 | |
+| `spirit` | Spirit | NASA Science | NSSDCA | NASA/JPL-Caltech | Eduardo | 2026-11-14 | |
+| `opportunity` | Opportunity | NASA Science | NSSDCA 2003-032A | NASA/JPL-Caltech/Cornell/Arizona State | Eduardo | 2026-11-14 | Imagen PIA18079 |
+| `insight` | InSight | NASA Science | NSSDCA | NASA/JPL-Caltech | Eduardo | 2026-11-14 | |
+| `ingenuity` | Ingenuity | NASA Science | NSSDCA 2020-052A | NASA/JPL-Caltech | Eduardo | 2026-11-14 | Imagen PIA23720 |
+| `voyager-1` | Voyager 1 | NASA Voyager | JPL Horizons | NASA/JPL-Caltech | Eduardo | 2026-11-14 | `horizons_id = -31` |
+| `voyager-2` | Voyager 2 | NASA Voyager | JPL Horizons | NASA/JPL-Caltech | Eduardo | 2026-11-14 | `horizons_id = -32` |
 
 ---
 
@@ -67,16 +67,19 @@ Para cada ficha:
 
 | Archivo | Pieza | Crédito | URL de origen |
 |---|---|---|---|
-| `apollo-11-lm_main.jpg` | Apolo 11 | NASA | pendiente |
-| `apollo-17-lrv_main.jpg` | LRV Apolo 17 | NASA | pendiente |
-| `surveyor-3_main.jpg` | Surveyor 3 | NASA | pendiente |
-| `sojourner_main.jpg` | Sojourner | NASA/JPL | pendiente |
-| `spirit_main.jpg` | Spirit | NASA/JPL-Caltech | pendiente |
-| `opportunity_main.jpg` | Opportunity | NASA/JPL-Caltech | pendiente |
-| `insight_main.jpg` | InSight | NASA/JPL-Caltech | pendiente |
-| `ingenuity_main.jpg` | Ingenuity | NASA/JPL-Caltech | pendiente |
-| `voyager-1_main.jpg` | Voyager 1 | NASA/JPL-Caltech | pendiente |
-| `voyager-2_main.jpg` | Voyager 2 | NASA/JPL-Caltech | pendiente |
+| `apollo-11-lm_main.jpg` | Apolo 11 | NASA | https://nssdc.gsfc.nasa.gov/planetary/image/ap11_lm_as11_40_5927.jpg |
+| `apollo-17-lrv_main.jpg` | LRV Apolo 17 | NASA | https://nssdc.gsfc.nasa.gov/planetary/image/as17_147_22526.jpg |
+| `surveyor-3_main.jpg` | Surveyor 3 | NASA | https://nssdc.gsfc.nasa.gov/imgcat/higher_res/apollo/as12_48_7133.jpg |
+| `sojourner_main.jpg` | Sojourner | NASA/JPL-Caltech | https://nssdc.gsfc.nasa.gov/image/hi-res/spacecraft/mpath_sojourner_pia01122.tiff |
+| `spirit_main.jpg` | Spirit | NASA/JPL-Caltech | https://nssdc.gsfc.nasa.gov/planetary/image/mer_2003.jpg |
+| `opportunity_main.jpg` | Opportunity | NASA/JPL-Caltech/Cornell Univ./Arizona State Univ. | https://images-assets.nasa.gov/image/PIA18079/PIA18079~orig.jpg |
+| `insight_main.jpg` | InSight | NASA/JPL-Caltech | https://nssdc.gsfc.nasa.gov/planetary/image/insight.jpg |
+| `ingenuity_main.jpg` | Ingenuity | NASA/JPL-Caltech | https://images-assets.nasa.gov/image/PIA23720/PIA23720~orig.jpg |
+| `voyager-1_main.jpg` | Voyager 1 | NASA/JPL-Caltech | https://nssdc.gsfc.nasa.gov/image/spacecraft/voyager.jpg |
+| `voyager-2_main.jpg` | Voyager 2 | NASA/JPL-Caltech | https://nssdc.gsfc.nasa.gov/image/spacecraft/voyager2.jpg |
+
+Los fondos de los mapas también salen de NSSDCA. Su origen y tratamiento
+están documentados en `assets/maps/README.md`.
 
 ---
 
@@ -85,3 +88,4 @@ Para cada ficha:
 | Fecha | Cambio | Autor |
 |---|---|---|
 | 2026-11-14 | Creación del registro | Equipo |
+| 2026-11-14 | Revisión cruzada de las 10 fichas, segundas fuentes de Opportunity e Ingenuity y URLs de créditos | Eduardo |
