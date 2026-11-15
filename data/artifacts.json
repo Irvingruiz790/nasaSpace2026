@@ -62,7 +62,7 @@
       "horizons_id": null,
       "imagen": "assets/img/apollo-17-lrv_main.jpg",
       "credito_imagen": "NASA",
-      "alt_text": "Un astronauta revisa el coche lunar del Apolo 17 sobre el suelo gris de la Luna.",
+      "alt_text": "Un astronauta conduciendo el coche lunar del Apolo 17 sobre el suelo gris de la Luna.",
       "historia": {
         "que_es": "Es un coche eléctrico de dos asientos, como un carrito de golf lunar. Viajó doblado dentro del módulo lunar y se armó en la Luna.",
         "por_que": "¿Cómo explorar más lejos de la nave? Con este coche, Eugene Cernan y Harrison Schmitt llegaron a lugares más distantes y recogieron rocas en muchos sitios.",
@@ -148,7 +148,7 @@
       "horizons_id": null,
       "imagen": "assets/img/sojourner_main.jpg",
       "credito_imagen": "NASA/JPL-Caltech",
-      "alt_text": "La base Pathfinder en Marte con el pequeño rover Sojourner a su lado y las bolsas de aire desinfladas.",
+      "alt_text": "El pequeño rover Sojourner sobre el suelo rojizo de Marte, rodeado de rocas.",
       "historia": {
         "que_es": "Es el primer robot con ruedas que rodó por Marte. Medía 30 centímetros de alto y pesaba 10.6 kg, como una bolsa grande de arroz.",
         "por_que": "¿Puede un pequeño robot con ruedas explorar Marte? Sojourner viajó con la base Pathfinder para estudiar rocas y suelo, y probar tecnologías nuevas.",
@@ -234,7 +234,7 @@
       "horizons_id": null,
       "imagen": "assets/img/opportunity_main.jpg",
       "credito_imagen": "NASA/JPL-Caltech/Cornell Univ./Arizona State Univ.",
-      "alt_text": "Autorretrato de Opportunity en Marte, con sus paneles solares limpios de polvo gracias al viento.",
+      "alt_text": "Panorámica del cráter Endurance tomada por Opportunity, con parte del rover en primer plano.",
       "historia": {
         "que_es": "Es un robot geólogo (científico de rocas) con ruedas y paneles solares, como una calculadora solar sobre ruedas. Es gemelo de Spirit.",
         "por_que": "¿Hubo agua en Marte hace mucho tiempo? Opportunity aterrizó en Meridiani Planum, donde los minerales sugerían un pasado húmedo, para buscar pistas.",
@@ -271,8 +271,8 @@
       "distancia_actual": "entre unos 55 y unos 400 millones de km de la Tierra, según la época",
       "horizons_id": null,
       "imagen": "assets/img/insight_main.jpg",
-      "credito_imagen": "NASA",
-      "alt_text": "Último selfi del módulo InSight sobre el suelo de Marte, con sus paneles solares cubiertos de polvo.",
+      "credito_imagen": "NASA/JPL-Caltech",
+      "alt_text": "Ilustración del módulo InSight sobre Marte, con un corte que muestra su sismómetro bajo el suelo.",
       "historia": {
         "que_es": "Es como un doctor para Marte: un robot que se quedó quieto para escuchar su interior. Tenía un sismómetro (aparato que siente temblores) y un brazo robótico.",
         "por_que": "¿Cómo es Marte por dentro? InSight quiso estudiar su corteza, su manto y su núcleo, como una radiografía, para entender mejor ese planeta rocoso.",
@@ -406,7 +406,7 @@
       "horizons_id": "-32",
       "imagen": "assets/img/voyager-2_main.jpg",
       "credito_imagen": "NASA/JPL-Caltech",
-      "alt_text": "Ingenieros trabajando en la sonda Voyager 2 antes de su lanzamiento, en 1977.",
+      "alt_text": "Maqueta de la sonda Voyager 2 con su gran antena parabólica sobre fondo negro.",
       "historia": {
         "que_es": "Es la gemela de Voyager 1: una sonda con una gran antena, como un plato gigante, que viaja desde 1977. Es la única que visitó Urano y Neptuno.",
         "por_que": "¿Cómo son los planetas gigantes? Voyager 2 salió para ver Júpiter y Saturno y, como todo salió bien, siguió hacia Urano y Neptuno.",

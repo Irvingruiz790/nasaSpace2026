@@ -23,10 +23,17 @@ def test_el_ejemplo_no_tiene_errores_de_contrato() -> None:
 
 
 def test_las_imagenes_faltantes_son_aviso_y_no_error() -> None:
-    problemas = datos.validar_piezas(piezas())
+    pieza = copy.deepcopy(piezas()[0])
+    pieza["imagen"] = "assets/img/no-existe_main.jpg"
+    problemas = datos.validar_pieza(pieza)
     de_imagen = [p for p in problemas if p.campo == "imagen"]
-    assert de_imagen, "el ejemplo todavía no tiene imágenes reales"
+    assert de_imagen
     assert all(p.severidad == "aviso" for p in de_imagen)
+
+
+def test_todas_las_imagenes_del_dataset_existen() -> None:
+    problemas = datos.validar_piezas(piezas())
+    assert [p for p in problemas if p.campo == "imagen"] == []
 
 
 def test_detecta_id_repetido() -> None:
