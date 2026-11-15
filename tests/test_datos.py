@@ -127,9 +127,15 @@ def test_los_fondos_de_mapa_cumplen_el_formato() -> None:
 def test_las_posiciones_cubren_todas_las_piezas() -> None:
     posiciones = datos.cargar_posiciones()
     assert set(posiciones) == {"luna", "marte", "espacio_profundo"}
+    # Las piezas que caen detrás del globo de Marte no tienen marcador: se
+    # dibujan debajo del mapa y se declaran en el JSON para no perderlas.
+    crudo = datos.leer_json(datos.ruta_posiciones())
+    al_otro_lado = set(crudo.get("al_otro_lado", []))
     for pieza in piezas():
         marcador = posiciones.get(pieza["zona"], {}).get(pieza["id"])
-        assert marcador is not None, pieza["id"]
+        if marcador is None:
+            assert pieza["id"] in al_otro_lado, pieza["id"]
+            continue
         assert 0 <= marcador["x"] <= 100, pieza["id"]
         assert 0 <= marcador["y"] <= 100, pieza["id"]
 

@@ -19,6 +19,7 @@ CREDITOS = {
     "marte": "NASA/JPL · Viking 1, 1976",
     "espacio-profundo": "NASA/JPL · Voyager",
     "vivo": "NASA · Apollo 8, 1968",
+    "quiz": "NASA/JPL · Montaje del sistema solar",
 }
 
 

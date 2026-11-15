@@ -17,9 +17,10 @@ fuentes tipográficas viven aquí y no en `assets/`: desde `assets/` darían 404
 | `fonts/OFL-Overpass.txt` | Licencia de Overpass | — |
 | `img/encabezados/` | Fondos fotográficos de los encabezados (1200 × 675) | Dominio público NASA y una imagen aportada por el equipo |
 
-Los cinco fondos se recortaron a 1200 × 675 px para que pesen menos de
+Los seis fondos se recortaron a 1200 × 675 px para que pesen menos de
 300 KB. La portada es una ilustración de Marte, la Luna y la Tierra aportada
-por el equipo; las otras cuatro salen del archivo de imágenes del NSSDCA:
+por el equipo; el del Quiz es un montaje del sistema solar de NASA/JPL; los
+otros cuatro salen del archivo de imágenes del NSSDCA:
 
 | Archivo | Foto | Crédito |
 |---|---|---|
@@ -28,6 +29,7 @@ por el equipo; las otras cuatro salen del archivo de imágenes del NSSDCA:
 | `img/encabezados/marte_viking1.jpg` | Panorama del Viking 1 Lander en Marte | NASA/JPL, 1976 |
 | `img/encabezados/espacio_voyager.jpg` | Sonda Voyager | NASA/JPL |
 | `img/encabezados/vivo_apollo8.jpg` | Earthrise, Apollo 8 | NASA, 1968 |
+| `img/encabezados/quiz_sistema_solar.jpg` | [PIA01341](https://images.nasa.gov/details/PIA01341), Solar System Montage Updated | NASA/JPL, 1999 |
 
 Las dos familias son libres, se pueden empaquetar y se sirven desde el propio
 dominio de la app. Así se ve igual sin internet y no hay peticiones a Google
